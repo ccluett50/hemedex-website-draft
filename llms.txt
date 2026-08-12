@@ -1,0 +1,19 @@
+# Hemedex
+
+> Hemedex manufactures continuous cerebral blood flow (perfusion) monitoring technology for neurocritical care and the operating room. Its flagship product, the Bowman Perfusion Monitor, is the only device that continuously measures regional cerebral blood flow in absolute physiological units (ml/100g/min) at the bedside.
+
+Hemedex, Inc. — founded 2000, Waltham, Massachusetts, USA. Core technology: Thermal Diffusion Flowmetry (TDF) delivered through the QFlow 500 Perfusion Probe.
+
+## Core pages
+- [Home](https://hemedex.com/index.html): Company overview and the "Know The Flow" value proposition.
+- [Products](https://hemedex.com/products.html): Bowman Perfusion Monitor, QFlow 500 Perfusion Probe, and Quad/Dual/Single Lumen Bolt Kits — with specifications and FAQs.
+- [Clinical](https://hemedex.com/clinical.html): Why perfusion matters, applications & benefits, validation & regulatory status, theory of operation, and multimodal monitoring.
+- [Publications](https://hemedex.com/publications.html): 91 peer-reviewed publications on cerebral perfusion monitoring, TDF, TBI, SAH, and multimodal neuromonitoring — searchable and filterable by keyword.
+- [About](https://hemedex.com/about.html): Company history, team, mission, and partner institutions.
+- [Contact](https://hemedex.com/contact.html): Sales, technical support, and office location.
+
+## Key facts
+- Bowman Perfusion Monitor: continuous, quantitative regional CBF in absolute units; FDA cleared; up to 10 days of bedside monitoring; no user calibration or zeroing.
+- QFlow 500 Perfusion Probe: minimally invasive, single-use dual-thermistor catheter using Thermal Diffusion Flowmetry; CT compatible.
+- QFlow 500 Titanium Bolt Kits (Quad/Dual/Single lumen): single-burr-hole access for multimodal monitoring — CBF, ICP, PbtO2, microdialysis, and depth electrodes.
+- Primary settings: Neuro ICU (SAH, TBI, ICH) and the OR (AVM, Moyamoya, EC-IC bypass).

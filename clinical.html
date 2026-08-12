@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinical Information — Hemedex</title>
+    <meta name="description" content="Clinical applications, validation, theory of operation, and multimodal monitoring information for the Bowman Perfusion Monitor.">
+
+    <!-- Canonical + social cards (added in v622) -->
+    <link rel="canonical" href="https://hemedex.com/clinical.html">
+    <meta name="theme-color" content="#384794">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Hemedex">
+    <meta property="og:title" content="Clinical Information — Hemedex">
+    <meta property="og:description" content="Clinical applications, validation, theory of operation, and multimodal monitoring information for the Bowman Perfusion Monitor.">
+    <meta property="og:url" content="https://hemedex.com/clinical.html">
+    <meta property="og:image" content="https://hemedex.com/images/og/hemedex-og.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@HemedexInc">
+    <meta name="twitter:title" content="Clinical Information — Hemedex">
+    <meta name="twitter:description" content="Clinical applications, validation, theory of operation, and multimodal monitoring.">
+    <meta name="twitter:image" content="https://hemedex.com/images/og/hemedex-og.jpg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo" aria-label="Hemedex Home">
+                    <img src="images/logo.jpg" alt="Hemedex" class="logo-img">
+                </a>
+                <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+                                <nav class="main-nav" role="navigation" aria-label="Main navigation">
+                    <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="has-dropdown">
+                        <a href="products.html" class="nav-link" aria-haspopup="true" aria-expanded="false">
+                            Products
+                            <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                        </a>
+                        <ul class="nav-dropdown">
+                            <li><a href="products.html#bowman-monitor" class="nav-dropdown-link">Bowman Perfusion Monitor</a></li>
+                            <li><a href="products.html#qflow-probe" class="nav-dropdown-link">QFlow 500 Perfusion Probe</a></li>
+                            <li><a href="products.html#quad-bolt" class="nav-dropdown-link">Quad Lumen Bolt Kit</a></li>
+                            <li><a href="products.html#dual-bolt" class="nav-dropdown-link">Dual Lumen Bolt Kit</a></li>
+                            <li><a href="products.html#single-bolt" class="nav-dropdown-link">Single Lumen Bolt Kit</a></li>
+                            <li><a href="products.html#next-gen-monitor" class="nav-dropdown-link">Next Generation Monitor</a></li>
+                        </ul>
+                    
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="clinical.html" class="nav-link active" aria-current="page" aria-haspopup="true" aria-expanded="false">
+                            Clinical
+                            <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                        </a>
+                        <ul class="nav-dropdown">
+                            <li><a href="clinical.html#why-perfusion" class="nav-dropdown-link">Why Perfusion?</a></li>
+                            <li><a href="clinical.html#applications" class="nav-dropdown-link">Applications & Benefits</a></li>
+                            <li><a href="clinical.html#validation" class="nav-dropdown-link">Validation & Regulatory</a></li>
+                            <li><a href="clinical.html#theory" class="nav-dropdown-link">Theory of Operation</a></li>
+                            <li><a href="clinical.html#how-to-use" class="nav-dropdown-link">How to Use the Monitor</a></li>
+                            <li><a href="clinical.html#multimodal" class="nav-dropdown-link">Multimodal Monitoring</a></li>
+                        </ul>
+                    
+                    </li>
+                    <li><a href="publications.html" class="nav-link">Publications</a></li>
+                    <li class="has-dropdown">
+                        <a href="about.html" class="nav-link" aria-haspopup="true" aria-expanded="false">
+                            About Us
+                            <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                        </a>
+                        <ul class="nav-dropdown">
+                            <li><a href="about.html#about-overview" class="nav-dropdown-link">Company Overview</a></li>
+                            <li><a href="about.html#team" class="nav-dropdown-link">Our Team</a></li>
+                            <li><a href="about.html#mission-vision" class="nav-dropdown-link">Mission & Vision</a></li>
+                           <!-- <li><a href="about.html#global-reach" class="nav-dropdown-link">Partner Institutions</a></li> -->
+                        </ul>
+                    
+                    </li>
+                    <li><a href="contact.html" class="btn btn-nav">Contact Us</a></li>
+                </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+
+        <section class="page-header">
+            <div class="container">
+                <h1>Clinical Information</h1>
+                <p class="page-subtitle">Applications, validation, and multimodal monitoring solutions for neurocritical care</p>
+            </div>
+        </section>
+
+        <!-- Topic Navigation Cards -->
+        <section class="clinical-topics section-padding bg-light">
+            <div class="container">
+                <h2 class="section-title">Clinical Topics</h2>
+                <p class="section-subtitle">Explore the science, application, and technology behind cerebral perfusion monitoring</p>
+                <div class="topics-grid">
+                    <div class="topic-card">
+                        <div class="topic-icon" aria-hidden="true">
+                            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/></svg>
+                        </div>
+                        <h3 class="topic-title">Why Perfusion?</h3>
+                        <p class="topic-description">Perfusion is an essential parameter in critical care management that reveals what's happening at the tissue level.</p>
+                        <a href="#why-perfusion" class="btn btn-tertiary">Explore</a>
+                    </div>
+
+                    <div class="topic-card">
+                        <div class="topic-icon" aria-hidden="true">
+                            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+                        </div>
+                        <h3 class="topic-title">Applications &amp; Benefits</h3>
+                        <p class="topic-description">How our technology is currently applied across neurocritical care and the associated clinical benefits.</p>
+                        <a href="#applications" class="btn btn-tertiary">Explore</a>
+                    </div>
+
+                    <div class="topic-card">
+                        <div class="topic-icon" aria-hidden="true">
+                            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </div>
+                        <h3 class="topic-title">Validation</h3>
+                        <p class="topic-description">Clinical validation and regulatory documentation for the Bowman Perfusion Monitoring System.</p>
+                        <a href="#validation" class="btn btn-tertiary">Explore</a>
+                    </div>
+
+                    <div class="topic-card">
+                        <div class="topic-icon" aria-hidden="true">
+                            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                        </div>
+                        <h3 class="topic-title">Theory of Operation</h3>
+                        <p class="topic-description">How the Bowman Perfusion Monitor® achieves accurate, continuous perfusion measurement.</p>
+                        <a href="#theory" class="btn btn-tertiary">Explore</a>
+                    </div>
+
+                    <div class="topic-card">
+                        <div class="topic-icon" aria-hidden="true">
+                            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                        </div>
+                        <h3 class="topic-title">How to Use the Monitor</h3>
+                        <p class="topic-description">Step-by-step resources and video guides demonstrating the setup and operation of the BPM system.</p>
+                        <a href="#how-to-use" class="btn btn-tertiary">Explore</a>
+                    </div>
+
+                    <div class="topic-card">
+                        <div class="topic-icon" aria-hidden="true">
+                            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10M7 12h10M7 16h6"/></svg>
+                        </div>
+                        <h3 class="topic-title">Multimodal Monitoring</h3>
+                        <p class="topic-description">Our products integrate seamlessly with other multimodal monitoring parameters for complete brain physiology insight.</p>
+                        <a href="#multimodal" class="btn btn-tertiary">Explore</a>
+                    </div>
+
+                    <div class="topic-card">
+                        <div class="topic-icon" aria-hidden="true">
+                            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 14l9-5-9-5-9 5 9 5z"/><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg>
+                        </div>
+                        <h3 class="topic-title">Literature</h3>
+                        <p class="topic-description">Peer-reviewed publications reporting the application of our technology in clinical practice and research.</p>
+                        <a href="publications.html" class="btn btn-tertiary">View Publications</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================
+             WHY PERFUSION?
+             ================================================ -->
+        <section class="clinical-section" id="why-perfusion">
+            <div class="container">
+                <div class="clinical-section-inner wide">
+                    <h2>Why <span>Perfusion?</span></h2>
+                    <p>Tissue perfusion — the delivery of oxygenated blood to the capillary beds — is the fundamental process that keeps brain cells alive. Unlike blood pressure or heart rate, which reflect systemic hemodynamics, perfusion reveals what is actually happening at the cellular level where oxygen exchange occurs.</p>
+                    <p>In neurological injuries such as traumatic brain injury (TBI) and subarachnoid hemorrhage (SAH), global hemodynamic parameters can appear normal on standard monitors while regional cerebral ischemia develops silently. By the time conventional signs of compromise appear, irreversible neuronal damage may already be underway.</p>
+
+                    <p><strong>Insufficient perfusion (ischemia)</strong> — when demand exceeds supply — induces an oxygen debt and causes a buildup of toxic cellular waste, stressing the vitality of the tissue. Untreated ischemia leads to cellular dysfunction, loss of organ function, and even cellular death, i.e., tissue infarction.</p>
+                    <p><strong>Excessive perfusion (hyperemia)</strong> — when supply exceeds demand — is frequently associated with formation of edema in the associated tissue.</p>
+                    <p>Consequently, maintaining adequate perfusion (via managing perfusion pressure and vascular patency) is vital to maintaining healthy tissue.</p>
+
+                    <div class="product-inline-images" style="justify-items: center; margin: 2rem 0;">
+                        <div class="product-inline-img-wrap" style="max-width: 540px;">
+                            <img src="images/clinical/Why-Perfusion.jpg" alt="Diagram illustrating the relationship between perfusion, ischemia, and hyperemia in tissue" loading="lazy" style="height: auto; max-height: 360px;">
+                            <p class="product-inline-caption">Image courtesy of: <em>Essentials of Nutrition: A Functional Approach</em>. Vol. 1. December 2012.</p>
+                        </div>
+                    </div>
+
+                    <div class="highlight-box">
+                        <p><strong>The clinical gap:</strong> Standard monitoring (ICP, MAP, CPP) tells you the pressure environment. Only direct cerebral blood flow measurement tells you whether tissue is actually being perfused — a critical missing piece of the physiological picture.</p>
+                    </div>
+
+                    <p style="padding-top: 2em;">Hemedex's patented <strong>Thermal Diffusion Flowmetry (TDF) </strong>technology directly and continuously quantifies regional CBF in absolute physiological units (ml/100g/min), giving clinicians an objective, real-time perfusion signal at the bedside with FDA approval, for up to ten days.</p>
+
+
+                    <h3 style="margin-top: 3rem; text-align: center; font-size: 1.5rem;">Perfusion Monitoring Reveals:</h3>
+                    <div class="clinical-two-col">
+                        <div class="info-panel">
+                            <ul>
+                                <li>Regional cerebral ischemia before clinical signs appear</li>
+                                <li>Autoregulation when paired with CPP</li>
+                                <li>Vasospasm following SAH</li>
+                                <li>Response to vasopressor therapy and hyperventilation</li>
+                                <li>Secondary injury development during ICU stay</li>
+                                <li>Brain edema via thermal conductivity changes</li>
+                                <li>Regional CBF heterogeneity in contrast to global metrics</li>
+                            </ul>
+                        </div>
+                        <div class="info-panel">
+                            <!-- <h3>Perfusion Monitoring Reveals:</h3> -->
+                            <ul>
+                                <li>Microcirculatory failure despite normal CPP</li>
+                                <li>Early vasospasm before neurological deterioration</li>
+                                <li>Penumbral tissue at risk of infarction</li>
+                                <li>Real-time response to therapeutic interventions</li>
+                                <li>Tissue-level CBF effects of ICP management</li>
+                                <li>Differentiate between vasospasm and hyperemia  subsuquent to increased TCD Velocity</li>
+                                <li>Observation of sub-clinical CSD from CBF patterns</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================
+             APPLICATIONS & BENEFITS
+             ================================================ -->
+        <section class="clinical-section bg-light" id="applications">
+            <div class="container">
+                <div class="clinical-section-inner wide">
+                    <h2 style="text-align: center;">Applications <span>&amp; Benefits</span></h2>
+                    <p style= "margin-bottom: 2.5rem; text-align: center;">The Bowman Perfusion Monitor is used across a range of critical clinical scenarios where understanding real-time cerebral blood flow is essential for guiding therapy and preventing secondary injury.</p>
+
+                    <div class="product-inline-images product-inline-images--duo">
+                        <div class="product-inline-img-wrap">
+                            <img src="images/clinical/TBI.jpg" alt="CT scan showing traumatic brain injury" loading="lazy" class="enlargeable-img">
+                            <button class="enlarge-btn" aria-label="Enlarge image" title="Click to enlarge">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+                            </button>
+                        </div>
+                        <div class="product-inline-img-wrap">
+                            <img src="images/clinical/SAH.jpg" alt="CT scan showing subarachnoid hemorrhage" loading="lazy" class="enlargeable-img">
+                            <button class="enlarge-btn" aria-label="Enlarge image" title="Click to enlarge">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="clinical-two-col clinical-two-col--quad">
+                            <div class="info-panel">
+                                <h3>Traumatic Brain Injury (TBI)</h3>
+                                <ul>
+                                    <li>Continuous bedside CBF monitoring during the critical 72-hour post-injury window</li>
+                                    <li>Detection of secondary ischemic events driven by ICP crises, cerebral vasospasm, or hypotension</li>
+                                    <li>Real-time feedback for CPP optimization and vasopressor titration</li>
+                                    <li>Assessment of autoregulation status to personalize CPP targets</li>
+                                </ul>
+                            </div>
+                            <div class="info-panel">
+                                <h3>Subarachnoid Hemorrhage (SAH)</h3>
+                                <ul>
+                                    <li>Early detection of delayed cerebral ischemia (DCI) and vasospasm before neurological deficits appear</li>
+                                    <li>Guidance for hypervolemia and vasopressor therapy during vasospasm treatment</li>
+                                    <li>Monitoring response to intra-arterial papaverine and angioplasty</li>
+                                    <li>Assessment of ischemic penumbra in patients with poor neurological grade</li>
+                                </ul>
+                            </div>
+                            <div class="info-panel">
+                                <h3>Intraoperative Monitoring</h3>
+                                <ul>
+                                    <li>Cerebral aneurysm clipping — confirmation of adequate perfusion after clip placement</li>
+                                    <li>Spine surgery with risk of cord ischemia</li>
+                                    <li>Cardiopulmonary bypass — cerebral perfusion adequacy during circulatory arrest</li>
+                                    <li>Carotid endarterectomy — real-time CBF during cross-clamp</li>
+                                </ul>
+                            </div>
+                            <div class="info-panel">
+                                <h3>Clinical Benefits</h3>
+                                <ul>
+                                    <li>Early warning of impending ischemia — opportunity to intervene before injury occurs</li>
+                                    <li>Personalized therapy targeting — move beyond population-average CPP goals</li>
+                                    <li>Objective response assessment for every intervention</li>
+                                    <li>Continuous real-time signal – Absolute units (ml/100g/min)</li>
+                                </ul>
+                            </div>
+                    </div>
+
+                    <div class="product-inline-images">
+                        <div class="product-inline-img-wrap">
+                            <img src="images/clinical/vasospasm-screen-final-2.png" alt="BPM screen showing vasospasm detection with CBF drop" loading="lazy">
+                            <p class="product-inline-caption">Vasospasm detection — real-time CBF monitoring screen</p>
+                        </div>
+                        <div class="product-inline-img-wrap">
+                            <img src="images/clinical/RevisedMMM.jpg" alt="Multimodal monitoring concept showing integrated cerebral parameters" loading="lazy">
+                            <p class="product-inline-caption">Autoregulation Detection - Integrated multimodal monitoring</p>
+                        </div>
+                    </div>
+
+                    <div class="info-panel" style="margin-top: 2rem; max-width: var(--max-w-prose);">
+                        <h3>Other Applications</h3>
+                        <p style="margin-bottom: 0.75rem;">The system has also proved useful in a variety of other applications, including organ transplantation, reconstructive surgery, and oncology. Because adequate perfusion is essential to all tissues, there are many conditions for which monitoring blood perfusion could improve treatment, cost, and ultimately patient outcome.</p>
+                        <ul>
+                            <li><strong>Organ Transplantation</strong> — Continuous monitoring of hepatic microcirculation during and after liver transplantation to assess graft viability</li>
+                            <li><strong>Reconstructive Surgery</strong> — Perfusion monitoring in free tissue flaps and microvascular transplantation to detect early vascular compromise</li>
+                            <li><strong>Oncology</strong> — Assessment of perfusion changes during tumor hyperthermia treatment</li>
+                        </ul>
+                        <p style="margin-top: 0.75rem;">For a comprehensive list of publications in these areas, see the <a href="publications.html#transplant" style="color: var(--primary-dark); font-weight: 600;">Transplantation / Surgery</a> and <a href="publications.html#methodology" style="color: var(--primary-dark); font-weight: 600;">Methodology</a> categories in our publications library.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================
+             VALIDATION
+             ================================================ -->
+        <section class="clinical-section" id="validation">
+            <div class="container">
+                <div class="clinical-section-inner">
+                    <h2><span>Validation</span> &amp; Regulatory Status</h2>
+                    <p>The Bowman Perfusion Monitor has been rigorously validated against established standard techniques for cerebral blood flow measurement and has received regulatory clearance in major global markets.</p>
+
+                    <div class="validation-badges-grid">
+                        <div class="validation-badge-card">
+                            <div class="clearance-badges" style="margin-bottom: 1rem;"><span class="badge badge-fda">✓ FDA Cleared</span></div>
+                            <h3>US Market</h3>
+                            <p>FDA 510(k) clearance for the Bowman Perfusion Monitor, QFlow 500™ Perfusion Probe, and all Titanium Bolt Kits.</p>
+                        </div>
+                        <div class="validation-badge-card">
+                            <div class="clearance-badges" style="margin-bottom: 1rem;"><span class="badge badge-fda">✓ ISO Compliant</span></div>
+                            <h3>Quality System</h3>
+                            <p>QA surveillance audits conducted by FDA, EU, and ISO notified bodies with no findings.</p>
+                        </div>
+                    </div>
+
+                    <div class="highlight-box">
+                        <p>The flow measured by the perfusion probe has been validated for accuracy against flow measured by <strong>XeCT in humans</strong>, <strong>hydrogen clearance in pigs</strong>, and <strong>radioactive and non-radioactive micro-spheres in rat and rabbit livers</strong>. All probes are calibrated during the process of manufacture for zero flow condition of less than 0.2 ml/100g-min.</p>
+                    </div>
+
+                    <div class="product-faq" style="margin-top: 2rem;">
+                        <h3>Key Validation References</h3>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">Vajkoczy et al. — Experimental and clinical validation of the TDF microprobe<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="faq-answer"><p>P. Vajkoczy, H. Roth, P. Horn, T. Lucke, C. Thome, U. Hubner, G.T. Martin, C. Zappletal, E. Klar, L. Schilling, and P. Schmiedek, "Continuous monitoring of regional cerebral blood flow: experimental and clinical validation of a novel thermal diffusion microprobe," <em>J. Neurosurg.</em>, vol. 93, no. 2, pp. 265–274, Aug. 2000.</p></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">Klar et al. — Hepatic microcirculation validation in liver transplantation<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="faq-answer"><p>E. Klar, T. Kraus, J. Bleyl, W.H. Newman, H.F. Bowman, W. Hofmann, R. von Kummer, M. Bredt, C. Herfarth, "Thermodiffusion for continuous quantification of hepatic microcirculation — Validation and Potentials in Liver Transplantation," <em>Microvasc. Res.</em>, 58: 156-166, 1999.</p></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">Martin &amp; Bowman — Real-time continuous perfusion measurement validation<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="faq-answer"><p>G.T. Martin and H.F. Bowman, "Validation of Real-Time Continuous Perfusion Measurement," <em>Medical &amp; Biological Engineering &amp; Computing</em>, 38(3): 319-326, 2000.</p></div>
+                        </div>
+                    </div>
+
+                    <p style="margin-top: 1.5rem;">For a full list of literature, see our <a href="publications.html" style="color: var(--primary-dark); font-weight: 600;">Publications</a> page. For specific documentation requests, <a href="contact.html" style="color: var(--primary-dark); font-weight: 600;">contact our clinical team</a>.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================
+             THEORY OF OPERATION
+             ================================================ -->
+        <section class="clinical-section bg-light" id="theory">
+            <div class="container">
+                <div class="clinical-section-inner">
+                    <h2>Theory of <span>Operation</span></h2>
+                    <p>The Bowman Perfusion Monitor® uses <strong>Thermal Diffusion Flowmetry (TDF)</strong>, a technique originally conceived at MIT that quantifies tissue perfusion by measuring the thermal properties of brain tissue in real time.</p>
+
+                    <div class="theory-diagram">
+                        <div class="product-inline-images" style="grid-template-columns: 65fr 35fr;">
+                            <div class="product-inline-img-wrap">
+                                <img src="images/clinical/probe-thermistor.png" alt="QFlow 500 Probe dual-thermistor design" loading="lazy">
+                                <p class="product-inline-caption">QFlow 500™ dual-thermistor probe design</p>
+                            </div>
+                            <div class="product-inline-img-wrap">
+                                <img src="images/clinical/thermal-diffusion.jpg" alt="Thermal diffusion flowmetry concept" loading="lazy">
+                                <p class="product-inline-caption">Thermal diffusion measurement principle</p>
+                            </div>
+                        </div>
+                        <p style="margin-top: 1.5rem;">The BPM technology measures perfusion by tracking changes in power required to heat a small volume of tissue to a fixed temperature as blood moves past the heated tip. When the probe is powered on, a thermal field grows around the heated tip, until it is fully developed. The fully developed thermal field defines the interrogation volume over which perfusion is quantified. It takes approximately four minutes for the thermal field to fully develop following power-up and enable an accurate measurement of perfusion.</p>
+                    </div>
+
+                    <h3 style="font-family: var(--font-display); font-size: 1.375rem; font-weight: 400; color: var(--text-heading); margin: 2rem 0 1rem; letter-spacing: -0.01em;">How It Works — Step by Step</h3>
+
+                    <div class="info-panel">
+                        <h3>TDF-CBF Measurement Principle</h3>
+                        <ul>
+                            <li><strong>Step 1 — Probe placement:</strong> The QFlow 500™ probe is inserted into brain parenchyma through a titanium bolt, positioning two thermistors within the tissue of interest (typically frontal white matter).</li>
+                            <li><strong>Step 2 — Controlled heating:</strong> The distal thermistor is heated to a fixed temperature approximately 2°C above brain baseline temperature and the power required to maintain that fixed temperature is measured continuously.</li>
+                            <li><strong>Step 3 — Thermal diffusion:</strong> Blood flowing through capillaries in the heated volume carries heat away from the thermistor at a rate proportional to the local blood flow.</li>
+                            <li><strong>Step 4 — Gradient measurement:</strong> The temperature difference between the heated and unheated reference thermistors is continuously measured by the Bowman Perfusion Monitor in the perfusion calculation.</li>
+                            <li><strong>Step 5 — Perfusion calculation:</strong> The monitor combines the probe &amp; tissue thermal properties with the continuous temperature difference and power measurements in the perfusion extraction algorithm derived from the probe–tissue coupled thermal diffusion equations to calculate regional CBF in absolute units.</li>
+                            <li><strong>Step 6 — Continuous output:</strong> Updated CBF values are continuously displayed and stored for clinical review.</li>
+                        </ul>
+                    </div>
+
+                    <div class="highlight-box" style="margin-top: 1.5rem;">
+                        <p>Normal resting CBF in white matter is approximately <strong>20–35 ml/100g/min</strong>. Ischemic thresholds begin below approximately <strong>15–18 ml/100g/min</strong>, with severe ischemia below <strong>10 ml/100g/min</strong>. The Bowman Perfusion Monitor expresses all measurements in these clinically meaningful absolute units.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================
+             HOW TO USE THE MONITOR
+             ================================================ -->
+        <section class="clinical-section" id="how-to-use">
+            <div class="container">
+                <div class="clinical-section-inner wide">
+                    <h2>How to Use <span>the Monitor</span></h2>
+                    <p>The Bowman Perfusion Monitor is designed for use in the Neuro ICU and OR by trained clinical staff. The following resources provide an overview of the setup and operation process. For hands-on training, contact our clinical support team.</p>
+                    <!--
+                    <div class="video-grid">
+                        <div class="video-thumb">
+                            <div class="yt-facade" data-videoid="-s-1-FEaRVo" role="button" tabindex="0"
+                                 aria-label="Play: CBF insights in MMM – Dr. Foreman, NCS 2025">
+                                <img src="https://i.ytimg.com/vi/-s-1-FEaRVo/maxresdefault.jpg"
+                                     onerror="this.src='https://i.ytimg.com/vi/-s-1-FEaRVo/hqdefault.jpg'"
+                                     alt="CBF insights in MMM thumbnail" loading="lazy">
+                                <div class="yt-play-btn" aria-hidden="true">
+                                    <svg viewBox="0 0 68 48" width="52" height="36"><path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="#f00"/><path d="M45 24L27 14v20" fill="#fff"/></svg>
+                                </div>
+                                <div class="yt-fallback-link"><a href="https://www.youtube.com/watch?v=-s-1-FEaRVo" target="_blank" rel="noopener noreferrer">Watch on YouTube →</a></div>
+                            </div>
+                            <div class="video-thumb-label">CBF insights in MMM – Dr. Foreman, NCS 2025</div>
+                        </div>
+                        <div class="video-thumb">
+                            <div class="yt-facade" data-videoid="FHCCoUPbTdE" role="button" tabindex="0"
+                                 aria-label="Play: Clinical Application — NCS Poster Presentation 2023">
+                                <img src="https://i.ytimg.com/vi/FHCCoUPbTdE/maxresdefault.jpg"
+                                     onerror="this.src='https://i.ytimg.com/vi/FHCCoUPbTdE/hqdefault.jpg'"
+                                     alt="NCS 2023 Poster Presentation thumbnail" loading="lazy">
+                                <div class="yt-play-btn" aria-hidden="true">
+                                    <svg viewBox="0 0 68 48" width="52" height="36"><path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="#f00"/><path d="M45 24L27 14v20" fill="#fff"/></svg>
+                                </div>
+                                <div class="yt-fallback-link"><a href="https://www.youtube.com/watch?v=FHCCoUPbTdE" target="_blank" rel="noopener noreferrer">Watch on YouTube →</a></div>
+                            </div>
+                            <div class="video-thumb-label">Clinical Application — NCS Poster Presentation 2023</div>
+                        </div>
+                    </div>-->
+                    <!-- Monitor Photos -->
+                    <div class="product-inline-images product-inline-images--duo" style="margin: 2.5rem 0;">
+                        <div class="product-inline-img-wrap">
+                            <img src="images/clinical/monitor-front.jpg" alt="Bowman Perfusion Monitor front panel" loading="lazy">
+                            <p class="product-inline-caption">Front panel display</p>
+                        </div>
+                        <div class="product-inline-img-wrap">
+                            <img src="images/clinical/monitor-back.jpg" alt="Bowman Perfusion Monitor rear connections" loading="lazy">
+                            <p class="product-inline-caption">Rear panel connections</p>
+                        </div>
+                    </div>
+
+                    <div class="clinical-two-col" style="margin-top: 2.5rem;">
+                        <div class="info-panel">
+                            <h3>5 Steps to Setting Up the Monitor</h3>
+                            <ul>
+                                <li><strong>Step 1:</strong> Mount monitor on pole or place on shelf</li>
+                                <li><strong>Step 2:</strong> Connect the power cord</li>
+                                <li><strong>Step 3:</strong> Connect the umbilical cord</li>
+                                <li><strong>Step 4:</strong> Insert the QFlow 500™ probe through the titanium bolt following the IFU</li>
+                                <li><strong>Step 5:</strong> Connect the probe to the umbilical cord following placement</li>
+                            </ul>
+                        </div>
+                        <div class="info-panel">
+                            <h3>Monitor Display Elements</h3>
+                            <ul>
+                                <li><strong>Status Bar:</strong> Current operational phase, time remaining until next phase, and status alerts</li>
+                                <li><strong>Perfusion Value:</strong> Large numerical display of perfusion in absolute units, updated second-by-second</li>
+                                <li><strong>Trend Graph:</strong> Patient perfusion plotted over time in absolute units of ml/100g-min</li>
+                                <li><strong>Temperature:</strong> Tissue temperature updated second-by-second</li>
+                                <li><strong>ΔTemp:</strong> Temperature difference between the 2 sensors (stabilization) or probe temperature above tissue (measurement)</li>
+                                <li><strong>PPA:</strong> Probe Placement Assistant — reflects the quality of the signal and presence of cardiac-induced pulsatility</li>
+                            </ul>
+
+                            <div style="margin-top: 1rem;">
+                                <img src="images/clinical/PPAValueLegendRevised.jpg" alt="PPA value legend showing signal quality ranges" loading="lazy" style="border-radius: var(--r-md); border: 1px solid var(--border); box-shadow: var(--shadow-sm); max-width: 480px; width: 100%;">
+                                <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.375rem;">PPA value ranges indicating probe signal quality</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-panel" style="margin-top: 1.5rem;">
+                        <h3>Phases of the Measurement Cycle</h3>
+                        <p style="margin-bottom: 1rem;">The Bowman Perfusion Monitor automatically cycles through these phases of measurement:</p>
+                        <ul>
+                            <li><strong>Temperature Stabilization Phase:</strong> Tissue temperature stability criteria is assessed. When met, the BPM advances to Calibration automatically.</li>
+                            <li><strong>Calibration Phase:</strong> A 10-second period where K (thermal conductivity) and PPA values are calculated.</li>
+                            <li><strong>Blackout (first 2 minutes):</strong> The thermal field is at the early stages of development — no data is presented.</li>
+                            <li><strong>Grayout (next 2 minutes):</strong> The thermal field is more developed — the BPM presents a blinking perfusion value.</li>
+                            <li><strong>Active Measurement:</strong> When the perfusion value stops blinking, the thermal field is sufficiently developed and data plots on the screen. The BPM monitors perfusion for the selected period (default 30 minutes).</li>
+                        </ul>
+
+                        <!-- Phase Diagrams -->
+                        <div class="product-inline-images product-inline-images--trio" style="margin-top: 1.5rem;">
+                            <div class="product-inline-img-wrap">
+                                <img src="images/clinical/phase-1.png" alt="Phase 1: Temperature stabilization and calibration" loading="lazy" class="enlargeable-img">
+                                <button class="enlarge-btn" aria-label="Enlarge image" title="Click to enlarge">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+                                </button>
+                            </div>
+                            <div class="product-inline-img-wrap">
+                                <img src="images/clinical/phase-2.png" alt="Phase 2: Thermal field development (Blackout/Grayout)" loading="lazy" class="enlargeable-img">
+                                <button class="enlarge-btn" aria-label="Enlarge image" title="Click to enlarge">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+                                </button>
+                            </div>
+                            <div class="product-inline-img-wrap">
+                                <img src="images/clinical/phase-3.png" alt="Phase 3: Active perfusion measurement" loading="lazy" class="enlargeable-img">
+                                <button class="enlarge-btn" aria-label="Enlarge image" title="Click to enlarge">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-panel" style="margin-top: 2rem;">
+                        <h3>Training &amp; Support</h3>
+                        <ul>
+                            <li>Clinical training available from our Clinical Applications Specialist <Td></Td>team</li>
+                            <li>Hemedex provides in-service training for nursing and physician staff prior to first use</li>
+                            <li>Emergency technical support available 24/7 at +1 617 577 1759</li>
+                            <li>Instructions for Use (IFU) and quick-reference cards provided with all products</li>
+                            <li>Contact our team for access to full training materials</li>
+                        </ul>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 2.5rem;">
+                        <a href="https://www.youtube.com/channel/UCDMZ3P6b3M8cCwWg7AHebag" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                            View All Training Videos
+                        </a>
+                        <a href="contact.html" class="btn btn-primary" style="margin-left: 1rem;">Request On-Site Training</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================
+             MULTIMODAL MONITORING
+             ================================================ -->
+        <section class="clinical-section bg-light" id="multimodal">
+            <div class="container">
+                <div class="clinical-section-inner wide" style="text-align: center;">
+                    <h2>Multimodal <span>Monitoring</span></h2>
+                    <p style="max-width: var(--max-w-prose);">No single parameter tells the complete story of brain physiology in the critically ill patient. Multimodal Monitoring (MMM) integrates multiple physiological signals simultaneously, enabling clinicians to build a comprehensive, real-time picture of the injured brain and make more informed, individualized treatment decisions.</p>
+
+                    <div class="highlight-box" style="max-width: var(--max-w-prose); margin: 2rem auto; text-align: left;">
+                        <p>The Hemedex QFlow 500™ Perfusion Probe is <strong>the only tool that adds absolute CBF to the MMM panel</strong> — completing the pressure-oxygenation-flow triad that forms the foundation of precision neurocritical care.</p>
+                    </div>
+
+                    <div style="margin: 2rem auto; max-width: 620px;">
+                        <img src="images/clinical/mmm-graph.jpg" alt="Multimodal monitoring graph showing CBF, ICP, and other parameters" loading="lazy" class="enlargeable-img" style="border-radius: var(--r-lg); border: 1px solid var(--border); box-shadow: var(--shadow-md); width: 100%; margin-bottom: 1.5rem;">
+                        <p style="font-size: 0.8125rem; color: var(--text-muted); margin-bottom: 2rem;">Multimodal Monitoring Data</p>
+                    </div>
+
+                    <div style="margin: 2rem auto; max-width: 620px;">
+                        <img src="images/clinical/mmm-display.jpg" alt="Multimodal monitoring display showing simultaneous cerebral parameters" loading="lazy" style="border-radius: var(--r-lg); border: 1px solid var(--border); box-shadow: var(--shadow-md); width: 100%;">
+                        <p style="font-size: 0.8125rem; color: var(--text-muted); margin-top: 0.5rem;">Image courtesy of Dr. Howard Yonas, University of New Mexico Hospital — Simultaneous display of multiple cerebral parameters for clinical interpretation</p>
+                    </div>
+
+                    <h3 style="font-family: var(--font-display); font-size: 1.375rem; font-weight: 400; color: var(--text-heading); margin: 2.5rem 0 1.5rem; letter-spacing: -0.01em;">Parameters in a Complete MMM Panel</h3>
+
+                    <div class="mmm-params">
+                        <div class="mmm-param-card featured">
+                            <h4>Cerebral Blood Flow (CBF)</h4>
+                            <p>Provided by the QFlow 500™ via Thermal Diffusion Flowmetry. The only continuous, absolute CBF parameter available at the bedside.</p>
+                        </div>
+                        <div class="mmm-param-card">
+                            <h4>Intracranial Pressure (ICP)</h4>
+                            <p>Measured via intraparenchymal or intraventricular catheter. Drives CPP calculations together with MAP.</p>
+                        </div>
+                        <div class="mmm-param-card">
+                            <h4>Brain Tissue Oxygen (PbtO₂)</h4>
+                            <p>Clark electrode-based measurement of regional brain tissue oxygen tension. Ischemia threshold typically &lt;15 mmHg.</p>
+                        </div>
+                        <div class="mmm-param-card">
+                            <h4>Brain Temperature</h4>
+                            <p>Direct parenchymal temperature monitoring, often integrated with ICP or oxygen sensors.</p>
+                        </div>
+                        <div class="mmm-param-card">
+                            <h4>Electrocorticography (ECoG)</h4>
+                            <p>Detection of cortical spreading depolarizations and seizure activity at the cortical surface.</p>
+                        </div>
+                        <div class="mmm-param-card">
+                            <h4>Cerebral Microdialysis</h4>
+                            <p>Biochemical monitoring of the metabolic state of the penumbra — glucose, lactate, pyruvate, glutamate.</p>
+                        </div>
+                    </div>
+
+                    <h3 style="font-family: var(--font-display); font-size: 1.375rem; font-weight: 400; color: var(--text-heading); margin: 2.5rem 0 1.5rem; letter-spacing: -0.01em; text-align: center;">The Power of Knowledge: Transforming Data into Information</h3>
+
+                    <p style="max-width: var(--max-w-prose); margin-bottom: 1.5rem;">Multimodal Monitoring is the simultaneous monitoring of multiple physiological parameters to provide context for their interpretation, enhance detection of critical situations, monitor responses to therapeutic interventions, and facilitate clinical decision making.</p>
+
+                    <div class="info-panel" style="margin-bottom: 1.5rem; max-width: var(--max-w-prose);">
+                        <h3 class="container">What Multimodal Parameters Reveal Together</h3>
+                        <ul>
+                            <li>Simultaneous interpretation of <strong>cerebral perfusion pressure and flow</strong> enables detection of <strong>impaired autoregulation</strong> — a risk factor for poor outcomes</li>
+                            <li>Simultaneous interpretation of <strong>cerebral perfusion pressure and flow</strong> enables estimation of <strong>cerebral vascular resistance (CVR)</strong> — a predictor of vasospasm</li>
+                            <li>Simultaneous interpretation of <strong>arterial pressure and cerebral blood flow</strong> provides insight into the efficacy of hemodynamic therapeutic management</li>
+                            <li>The combination of parameters provides <strong>new alarm conditions</strong> — e.g., the simultaneous combination of moderately low flow and moderately high blood pressure indicates an untoward state, although either condition alone would not be cause for concern</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-panel" style="margin-bottom: 1.5rem; max-width: var(--max-w-prose);">
+                        <h3>Clinical Value of Combined Data</h3>
+                        <ul>
+                            <li>The display of multiple parameters in one place facilitates their clinical interpretation</li>
+                            <li>The combination of parameters provides new features that facilitate clinical management (e.g., cerebral vascular resistance)</li>
+                            <li>Enables patient-specific therapy rather than protocol-based management</li>
+                            <li>Provides real-time neuromonitoring data for a precision-medicine approach to clinical management of severe acute neurological injuries</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-panel" style="margin-top: 2.5rem; max-width: var(--max-w-prose);">
+                        <h3>Single Burr Hole Access</h3>
+                        <ul>
+                            <li>The Universal <a href="products.html#quad-bolt" style="color: var(--primary-dark); font-weight: 700;">Quad Lumen Bolt</a> is specifically designed to secure all commonly utilized intraparenchymal sensors</li>
+                            <li>A single Burr Hole allows for close proximal monitoring of all physiologic and chemical markers, and potentially decreases risk of hemorrhage and infection</li>
+                            <li>The four lumens splay out to prevent sensor interference, while remaining close enough to relate physiology between sensors</li>
+                            <li><a href="products.html#quad-bolt" style="color: var(--primary-dark); font-weight: 600;">Learn more about the Quad Lumen Bolt →</a></li>
+                        </ul>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border);">
+                        <p style="font-size: 1.125rem; color: var(--text-heading); margin-bottom: 1rem;">Explore the published evidence behind cerebral perfusion monitoring</p>
+                        <a href="publications.html" class="btn btn-primary">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/><polyline points="14 2 14 8 20 8"/></svg>
+                            View All Publications
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MMM CTA -->
+        <section class="mmm-cta section-padding">
+            <div class="container">
+                <div class="cta-content">
+                    <h2 class="cta-title-white">Multimodal Monitoring Enables Patient-Specific Care</h2>
+                    <p class="cta-text-white">Add absolute cerebral blood flow to your institution's monitoring panel.</p>
+                    <a href="contact.html" class="btn btn-outline-white">Contact Our Clinical Team</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="products.html">Products</a>
+                    <span class="footer-separator">|</span>
+                    <a href="clinical.html">Clinical</a>
+                    <span class="footer-separator">|</span>
+                    <a href="publications.html">Publications</a>
+                    <span class="footer-separator">|</span>
+                    <a href="about.html">About Us</a>
+                    <span class="footer-separator">|</span>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-social">
+                    <a href="https://twitter.com/HemedexInc" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X" class="social-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                    <a href="https://www.linkedin.com/company/hemedex-inc./" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+                    <a href="https://www.youtube.com/channel/UCDMZ3P6b3M8cCwWg7AHebag" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="social-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+                </div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2026 Hemedex, Inc. | All Rights Reserved</p></div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
