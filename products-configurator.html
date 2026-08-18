@@ -8,6 +8,7 @@
 
     <!-- Canonical + social cards (added in v622) -->
     <link rel="canonical" href="https://hemedex.com/products.html">
+    <meta name="robots" content="noindex">
     <meta name="theme-color" content="#384794">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Hemedex">
@@ -952,6 +953,187 @@
                     </div></div><!-- /product-detail-expanded -->
             </div>
         </section>
+
+        <!-- ================================================
+             BOLT CONFIGURATOR (CONCEPT PREVIEW)
+             ================================================ -->
+        <section class="product-detail" id="bolt-configurator">
+            <div class="container">
+                <div class="configurator-header">
+                    <span class="badge badge-dev" style="margin-bottom:0.75rem;display:inline-block;">Concept Preview — For Internal Review</span>
+                    <h2 class="product-detail-title">Build Your Multimodal Monitoring Configuration</h2>
+                    <p class="product-detail-desc">Select the sensors you plan to place and receive a recommended bolt type with a suggested sensor-to-lumen assignment, based on the published compatibility charts.</p>
+                </div>
+
+                <div class="configurator-grid">
+                    <div class="configurator-inputs">
+                        <div class="config-slot">
+                            <label for="cfg-sensor-1">Sensor 1</label>
+                            <select id="cfg-sensor-1" class="cfg-select"></select>
+                        </div>
+                        <div class="config-slot">
+                            <label for="cfg-sensor-2">Sensor 2</label>
+                            <select id="cfg-sensor-2" class="cfg-select"></select>
+                        </div>
+                        <div class="config-slot">
+                            <label for="cfg-sensor-3">Sensor 3</label>
+                            <select id="cfg-sensor-3" class="cfg-select"></select>
+                        </div>
+                        <div class="config-slot">
+                            <label for="cfg-sensor-4">Sensor 4</label>
+                            <select id="cfg-sensor-4" class="cfg-select"></select>
+                        </div>
+                    </div>
+
+                    <div class="configurator-result" id="cfg-result" aria-live="polite">
+                        <p class="cfg-placeholder">Select one or more sensors to see a recommended configuration.</p>
+                    </div>
+                </div>
+
+                <p class="cfg-disclaimer">This tool is a draft concept for internal review. Lumen assignments are derived from the published dimensional compatibility charts; entries marked * are dimensional estimates pending confirmation by Hemedex. Dimensional compatibility does not imply endorsement by the sensor manufacturer. Hemedex makes no claims with respect to the functionality and performance of any sensor other than the Hemedex QFlow 500™ Perfusion Probe.</p>
+            </div>
+        </section>
+
+        <style>
+        .configurator-header { max-width: 720px; margin-bottom: 2.5rem; }
+        .configurator-grid { display: grid; grid-template-columns: minmax(260px, 380px) 1fr; gap: 2.5rem; align-items: start; }
+        @media (max-width: 860px) { .configurator-grid { grid-template-columns: 1fr; } }
+        .config-slot { margin-bottom: 1.25rem; }
+        .config-slot label { display: block; font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); margin-bottom: 0.4rem; }
+        .cfg-select { width: 100%; padding: 0.7rem 0.9rem; font-size: 0.9375rem; font-family: inherit; color: var(--text-heading); background: var(--bg, #fff); border: 1px solid var(--border); border-radius: var(--r-md); cursor: pointer; }
+        .cfg-select:focus { outline: 2px solid var(--primary); outline-offset: 1px; }
+        .configurator-result { background: var(--bg-light); border: 1px solid var(--border); border-radius: var(--r-xl); padding: 1.75rem; min-height: 220px; }
+        .cfg-placeholder { color: var(--text-muted); font-style: italic; }
+        .cfg-bolt-name { font-family: var(--font-display); font-size: 1.375rem; color: var(--text-heading); margin: 0 0 0.25rem; }
+        .cfg-bolt-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--primary); }
+        .cfg-result-grid { display: grid; grid-template-columns: 1fr auto; gap: 1.5rem; align-items: start; }
+        @media (max-width: 640px) { .cfg-result-grid { grid-template-columns: 1fr; } }
+        .cfg-bolt-img { width: 150px; max-width: 100%; border-radius: var(--r-lg); border: 1px solid var(--border); background: #fff; }
+        .cfg-assign-table { width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: 0.9rem; }
+        .cfg-assign-table th, .cfg-assign-table td { text-align: left; padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--border); }
+        .cfg-assign-table th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); }
+        .cfg-note { font-size: 0.8125rem; color: var(--text-muted); margin-top: 0.75rem; }
+        .cfg-warn { background: #fdf3e7; border: 1px solid #edcfa6; border-radius: var(--r-md); padding: 0.75rem 1rem; font-size: 0.875rem; margin-top: 1rem; color: #7a5217; }
+        .cfg-video { margin-top: 1.5rem; }
+        .cfg-video iframe { width: 100%; max-width: 480px; aspect-ratio: 16 / 9; height: auto; border: 0; border-radius: var(--r-lg); }
+        .cfg-disclaimer { font-size: 0.8125rem; color: var(--text-muted); margin-top: 2rem; max-width: 900px; }
+        </style>
+
+        <script>
+        (function () {
+            var SENSORS = {
+                qflow:     { label: 'QFlow 500™ Perfusion Probe (CBF)', star: false },
+                camino:    { label: 'Integra Camino® ICP', star: false },
+                codman:    { label: 'Codman Microsensor ICP', star: true },
+                sophysa:   { label: 'Sophysa ICP (PSO-PTT)', star: true },
+                neurovent: { label: 'Raumedic Neurovent-PTO (ICP + PbtO₂)', star: false },
+                licox:     { label: 'Integra Licox® PbtO₂', star: false },
+                mdialysis: { label: 'M Dialysis 70/71 Microdialysis Catheter', star: false },
+                depth:     { label: 'Natus dEEG Depth Electrode', star: false },
+                temp:      { label: 'Temperature Probe', star: false }
+            };
+            /* Lumen compatibility from the published charts.
+               Entries marked with * in SENSORS are dimensional estimates pending Hemedex confirmation. */
+            var BOLTS = [
+                {
+                    id: 'single', name: 'QFlow 500™ Single Lumen Bolt Kit', href: '#single-bolt',
+                    img: 'images/products/single-bolt.jpg',
+                    lumens: [ { name: 'Single Lumen (0.060″)', ok: ['qflow', 'depth', 'codman', 'sophysa'] } ]
+                },
+                {
+                    id: 'dual', name: 'QFlow 500™ Dual Lumen Bolt Kit', href: '#dual-bolt',
+                    img: 'images/products/dual-bolt.jpg',
+                    lumens: [
+                        { name: 'Long Lumen (< 0.089″)',  ok: ['qflow', 'camino', 'licox', 'neurovent', 'codman', 'sophysa'] },
+                        { name: 'Short Lumen (< 0.053″)', ok: ['camino', 'depth', 'mdialysis', 'temp', 'codman', 'sophysa'] }
+                    ]
+                },
+                {
+                    id: 'quad', name: 'QFlow 500™ Quad Lumen Bolt Kit', href: '#quad-bolt',
+                    img: 'images/products/quad-bolt.png',
+                    lumens: [
+                        { name: 'Long Lumen (< 0.078″)',    ok: ['neurovent', 'camino', 'qflow', 'codman', 'sophysa'] },
+                        { name: 'Midsize Lumen A (< 0.064″)', ok: ['licox', 'mdialysis', 'depth'] },
+                        { name: 'Midsize Lumen B (< 0.064″)', ok: ['licox', 'mdialysis', 'depth'] },
+                        { name: 'Short Lumen (< 0.047″)',   ok: ['qflow', 'camino', 'temp', 'codman', 'sophysa'] }
+                    ]
+                }
+            ];
+
+            function assign(bolt, picked) {
+                if (picked.length > bolt.lumens.length) return null;
+                var lumens = bolt.lumens, n = lumens.length, used = new Array(n), out = [];
+                function bt(i) {
+                    if (i === picked.length) return true;
+                    for (var j = 0; j < n; j++) {
+                        if (!used[j] && lumens[j].ok.indexOf(picked[i]) !== -1) {
+                            used[j] = true; out.push({ lumen: lumens[j].name, sensor: picked[i] });
+                            if (bt(i + 1)) return true;
+                            used[j] = false; out.pop();
+                        }
+                    }
+                    return false;
+                }
+                return bt(0) ? out.slice() : null;
+            }
+
+            var selects = [];
+            for (var s = 1; s <= 4; s++) {
+                var el = document.getElementById('cfg-sensor-' + s);
+                if (!el) return;
+                var opts = '<option value="">— None —</option>';
+                for (var k in SENSORS) opts += '<option value="' + k + '">' + SENSORS[k].label + (SENSORS[k].star ? ' *' : '') + '</option>';
+                el.innerHTML = opts;
+                el.addEventListener('change', update);
+                selects.push(el);
+            }
+            selects[0].value = 'qflow';
+
+            function update() {
+                var box = document.getElementById('cfg-result');
+                var picked = selects.map(function (e) { return e.value; }).filter(Boolean);
+                if (!picked.length) {
+                    box.innerHTML = '<p class="cfg-placeholder">Select one or more sensors to see a recommended configuration.</p>';
+                    return;
+                }
+                var bolt = null, plan = null;
+                for (var i = 0; i < BOLTS.length; i++) {
+                    plan = assign(BOLTS[i], picked);
+                    if (plan) { bolt = BOLTS[i]; break; }
+                }
+                if (!bolt) {
+                    box.innerHTML = '<div class="cfg-warn">No published single-bolt configuration covers this sensor combination. ' +
+                        'Consider splitting sensors across two bolts, or <a href="contact.html">contact Hemedex</a> to discuss options.</div>';
+                    return;
+                }
+                var rows = '';
+                var anyStar = false;
+                plan.forEach(function (a) {
+                    var sn = SENSORS[a.sensor];
+                    if (sn.star) anyStar = true;
+                    rows += '<tr><td>' + a.lumen + '</td><td>' + sn.label + (sn.star ? ' *' : '') + '</td></tr>';
+                });
+                bolt.lumens.forEach(function (l) {
+                    if (!plan.some(function (a) { return a.lumen === l.name; })) {
+                        rows += '<tr><td>' + l.name + '</td><td style="color:var(--text-muted);">— available —</td></tr>';
+                    }
+                });
+                box.innerHTML =
+                    '<div class="cfg-result-grid"><div>' +
+                    '<span class="cfg-bolt-label">Suggested bolt type</span>' +
+                    '<h3 class="cfg-bolt-name"><a href="' + bolt.href + '">' + bolt.name + '</a></h3>' +
+                    '<table class="cfg-assign-table"><thead><tr><th>Lumen</th><th>Suggested sensor</th></tr></thead><tbody>' + rows + '</tbody></table>' +
+                    (anyStar ? '<p class="cfg-note">* Dimensional estimate — placement to be confirmed by Hemedex.</p>' : '') +
+                    '<p class="cfg-note">Insert the QFlow 500™ Perfusion Probe using the Probe Dura Piercer and Introducer at the recommended 2.5–3 cm depth below the dura.</p>' +
+                    '</div>' +
+                    '<img class="cfg-bolt-img" src="' + bolt.img + '" alt="' + bolt.name + '" loading="lazy">' +
+                    '</div>' +
+                    '<div class="cfg-video"><span class="cfg-bolt-label">Watch the insertion video</span><br>' +
+                    '<iframe src="https://www.youtube-nocookie.com/embed/TwCKmaRNYXA?rel=0&amp;modestbranding=1" title="QFlow 500 probe placement video" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>';
+            }
+            update();
+        })();
+        </script>
 
         <!-- ================================================
              NEXT GENERATION MONITOR
