@@ -1000,6 +1000,7 @@
                             <label for="cfg-sensor-4">Sensor 4</label>
                             <select id="cfg-sensor-4" class="cfg-select"></select>
                         </div>
+                        <p class="cfg-cta-hint cfgx-availability-hint" id="cfgx-availability" aria-live="polite"></p>
                         <div class="cfgx-readout" id="cfgx-readout" aria-hidden="true"></div>
                         <div class="cfg-field-cta" id="cfg-field-cta" hidden>
                             <button type="button" class="btn btn-primary cfgx-cta-btn" id="cfg-field-btn">
@@ -1151,6 +1152,12 @@
             border: 1px solid rgba(122, 150, 230, 0.38);
         }
         .cfgx-section .cfg-select:focus { outline: 3px solid #67e8f9; outline-offset: 1px; }
+        .cfgx-section .cfg-select option { background: #0b1126; color: #e4eaf9; }
+        .cfgx-section .cfg-select option:disabled { color: #7c8ba5; font-style: italic; }
+        .cfgx-availability-hint:not(:empty) {
+            border-left: 2px solid rgba(103, 232, 249, 0.45);
+            padding-left: 0.75rem; margin-top: 0.9rem;
+        }
         .cfgx-section .cfg-placeholder { color: #93a5cf; }
         .cfgx-section .configurator-result { background: rgba(15, 23, 48, 0.88); border-color: rgba(122, 150, 230, 0.28); }
         .cfgx-section .cfg-bolt-name, .cfgx-section .cfg-bolt-name a { color: #f1f5ff; }
@@ -1553,7 +1560,50 @@
                 fieldCta.hidden = true;
             }
 
+            /* ---------- availability gating ----------
+               For every option in every slot, test whether that choice could still be
+               satisfied by some published bolt alongside the other current picks.
+               Anything that cannot is disabled, so an impossible combination can
+               never be assembled in the first place. */
+            function feasible(picked) {
+                if (!picked.length) return true;
+                for (var i = 0; i < BOLTS.length; i++) {
+                    if (assign(BOLTS[i], picked)) return true;
+                }
+                return false;
+            }
+
+            var availabilityHint = document.getElementById('cfgx-availability');
+
+            function refreshAvailability() {
+                var values = selects.map(function (e) { return e.value; });
+                /* If the page somehow lands on an unsatisfiable set, leave everything
+                   selectable so the user can always back out of it. */
+                var currentOk = feasible(values.filter(Boolean));
+                var blocked = 0;
+                selects.forEach(function (sel, i) {
+                    for (var o = 0; o < sel.options.length; o++) {
+                        var opt = sel.options[o];
+                        if (!opt.value) { opt.disabled = false; continue; }
+                        var sn = SENSORS[opt.value];
+                        var ok = true;
+                        if (currentOk) {
+                            var hypo = values.slice();
+                            hypo[i] = opt.value;
+                            ok = feasible(hypo.filter(Boolean));
+                        }
+                        opt.disabled = !ok;
+                        opt.textContent = sn.label + (sn.star ? ' *' : '') + (ok ? '' : ' — unavailable');
+                        if (!ok) blocked++;
+                    }
+                });
+                availabilityHint.textContent = blocked
+                    ? 'Greyed-out sensors have no compatible lumen left alongside your current selection. Clear or change a slot to reopen those options.'
+                    : '';
+            }
+
             function update() {
+                refreshAvailability();
                 var box = document.getElementById('cfg-result');
                 var picked = selects.map(function (e) { return e.value; }).filter(Boolean);
                 if (!picked.length) {
