@@ -1275,8 +1275,8 @@
                 sophysa:   { label: 'Sophysa ICP (PSO-PTT)', short: 'Sophysa ICP', star: true, color: '#f0977f', depth: 72 },
                 neurovent: { label: 'Raumedic Neurovent-PTO (ICP + PbtO₂)', short: 'Neurovent-PTO', star: false, color: '#c9aef5', depth: 92 },
                 licox:     { label: 'Integra Licox® PbtO₂', short: 'Licox PbtO₂', star: false, color: '#5eead4', depth: 96 },
-                mdialysis: { label: 'M Dialysis 70/71 Microdialysis Catheter', short: 'Microdialysis', star: false, color: '#f0c869', depth: 84 },
-                depth:     { label: 'Natus dEEG Depth Electrode', short: 'Depth Electrode', star: false, color: '#a7db7c', depth: 124 },
+                mdialysis: { label: 'M Dialysis 70/71 Microdialysis Catheter', short: 'Microdialysis', star: false, color: '#f0c869', depth: 90 },
+                depth:     { label: 'Natus dEEG Depth Electrode', short: 'Depth Electrode', star: false, color: '#a7db7c', depth: 112 },
                 temp:      { label: 'Temperature Probe', short: 'Temperature', star: false, color: '#a8b6cc', depth: 70 }
             };
             /* Lumen compatibility from the published charts.
@@ -1339,10 +1339,10 @@
 
             /* ---------- shared geometry ---------- */
             var QUAD_SLOTS = {
-                'Long Lumen (< 0.078″)':      { td: { x: 110, y: 62 },  r: 12, angle: -20, lbl: { dx: -8, dy: 20,  anchor: 'end' } },
-                'Midsize Lumen A (< 0.064″)': { td: { x: 66, y: 118 },  r: 10, angle: -7,  lbl: { dx: -8, dy: -8,  anchor: 'end' } },
-                'Midsize Lumen B (< 0.064″)': { td: { x: 154, y: 118 }, r: 10, angle: 7,   lbl: { dx: 8,  dy: -8,  anchor: 'start' } },
-                'Short Lumen (< 0.047″)':     { td: { x: 110, y: 160 }, r: 8,  angle: 20,  lbl: { dx: 8,  dy: 20,  anchor: 'start' } }
+                'Long Lumen (< 0.078″)':      { td: { x: 110, y: 62 },  r: 12, angle: -20 },
+                'Midsize Lumen A (< 0.064″)': { td: { x: 66, y: 118 },  r: 10, angle: -7 },
+                'Midsize Lumen B (< 0.064″)': { td: { x: 154, y: 118 }, r: 10, angle: 7 },
+                'Short Lumen (< 0.047″)':     { td: { x: 110, y: 160 }, r: 8,  angle: 20 }
             };
             function esc(t) { return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
 
@@ -1477,7 +1477,7 @@
             });
 
             function renderSide(plan) {
-                var W = 560, H = 430, cx = 280;
+                var W = 560, H = 470, cx = 280;
                 var duraY = 196, brainBottom = H - 10;
                 var svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Cross-section of the quad lumen bolt seated in the skull with sensors at representative depths">';
                 svg += '<rect x="0" y="0" width="' + W + '" height="' + H + '" fill="#0b1126"/>';
@@ -1488,6 +1488,7 @@
                 svg += '<rect x="10" y="' + (duraY + 3.5) + '" width="' + (W - 20) + '" height="' + (brainBottom - duraY - 3.5) + '" fill="#131b3a" rx="4"/>';
                 svg += '<path d="M 30 250 q 30 -18 60 0 t 60 0 t 60 0 t 60 0 t 60 0 t 60 0 t 60 0" fill="none" stroke="#25315e" stroke-width="2"/>';
                 svg += '<path d="M 30 310 q 30 -16 60 0 t 60 0 t 60 0 t 60 0 t 60 0 t 60 0 t 60 0" fill="none" stroke="#202b54" stroke-width="2"/>';
+                svg += '<path d="M 30 372 q 30 -16 60 0 t 60 0 t 60 0 t 60 0 t 60 0 t 60 0 t 60 0" fill="none" stroke="#1c2650" stroke-width="2"/>';
                 svg += '<text x="18" y="143" font-size="11" fill="#c9b384" font-family="inherit">Scalp</text>';
                 svg += '<text x="18" y="181" font-size="11" fill="#93a5cf" font-family="inherit">Skull</text>';
                 svg += '<text x="18" y="216" font-size="11" fill="#8fd8f2" font-family="inherit">Brain</text>';
@@ -1522,7 +1523,12 @@
                         if (p.sensor === 'qflow') {
                             probes += '<circle class="cfg-probe-tip" cx="' + (x2 - Math.sin(rad) * 14).toFixed(1) + '" cy="' + (y2 - Math.cos(rad) * 14).toFixed(1) + '" r="3" fill="#0b1126" stroke="' + sn.color + '" stroke-width="1.5" opacity="0"/>';
                         }
-                        labels += '<text class="cfg-probe-tip" x="' + (x2 + slot.lbl.dx).toFixed(1) + '" y="' + (y2 + slot.lbl.dy).toFixed(1) + '" font-size="10.5" font-weight="600" fill="' + sn.color + '" text-anchor="' + slot.lbl.anchor + '" font-family="inherit" opacity="0">' + esc(sn.short) + '</text>';
+                        var lx = x2 + 9, ly = y2 + 9;
+                        labels += '<text class="cfg-probe-tip" data-lx="' + lx.toFixed(1) + '" data-ly="' + ly.toFixed(1) +
+                            '" data-tx="' + x2.toFixed(1) + '" data-ty="' + y2.toFixed(1) + '" data-color="' + sn.color +
+                            '" x="' + lx.toFixed(1) + '" y="' + ly.toFixed(1) +
+                            '" transform="rotate(45 ' + lx.toFixed(1) + ' ' + ly.toFixed(1) + ')" font-size="10.5" font-weight="600" fill="' + sn.color +
+                            '" text-anchor="start" font-family="inherit" opacity="0">' + esc(sn.short) + '</text>';
                     });
                 }
                 svg += probes + labels;
@@ -1531,12 +1537,61 @@
                 return svg;
             }
 
+            var DIAG = Math.SQRT1_2;
+            function spaceLabels(root) {
+                var els = [].slice.call(root.querySelectorAll('text[data-lx]'));
+                if (els.length < 2) return;
+                var items = els.map(function (el) {
+                    var ax = parseFloat(el.getAttribute('data-lx')), ay = parseFloat(el.getAttribute('data-ly'));
+                    var w;
+                    try { w = el.getBBox().width; } catch (e) { w = 0; }
+                    if (!w) w = el.textContent.length * 5.6;
+                    return { el: el, ax: ax, ay: ay, w: w,
+                             u: (ax + ay) * DIAG,      /* distance along the 45-degree ray */
+                             v: (ay - ax) * DIAG };    /* which diagonal the label sits on */
+                });
+                items.sort(function (a, b) { return a.u - b.u; });
+                var SAME_LANE = 13, PAD = 9;
+                for (var pass = 0; pass < 3; pass++) {
+                    for (var i = 1; i < items.length; i++) {
+                        for (var j = 0; j < i; j++) {
+                            if (Math.abs(items[i].v - items[j].v) >= SAME_LANE) continue;
+                            var endJ = items[j].u + items[j].w + PAD;
+                            if (items[i].u < endJ) items[i].u = endJ;
+                        }
+                    }
+                }
+                items.forEach(function (it) {
+                    var push = it.u - (it.ax + it.ay) * DIAG;
+                    if (push <= 0.5) return;
+                    var nx = it.ax + push * DIAG, ny = it.ay + push * DIAG;
+                    it.el.setAttribute('x', nx.toFixed(1));
+                    it.el.setAttribute('y', ny.toFixed(1));
+                    it.el.setAttribute('transform', 'rotate(45 ' + nx.toFixed(1) + ' ' + ny.toFixed(1) + ')');
+                    if (push > 6) {
+                        var lead = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                        lead.setAttribute('class', 'cfg-probe-tip');
+                        lead.setAttribute('x1', it.el.getAttribute('data-tx'));
+                        lead.setAttribute('y1', it.el.getAttribute('data-ty'));
+                        lead.setAttribute('x2', (nx - 2).toFixed(1));
+                        lead.setAttribute('y2', (ny - 2).toFixed(1));
+                        lead.setAttribute('stroke', it.el.getAttribute('data-color'));
+                        lead.setAttribute('stroke-width', '1');
+                        lead.setAttribute('stroke-dasharray', '2 3');
+                        lead.setAttribute('stroke-opacity', '0.45');
+                        lead.setAttribute('opacity', '0');
+                        it.el.parentNode.insertBefore(lead, it.el);
+                    }
+                });
+            }
+
             function renderField(plan) {
                 var td = document.getElementById('cfg-topdown');
                 var side = document.getElementById('cfg-side');
                 var legend = document.getElementById('cfg-legend');
                 td.innerHTML = renderTopDown(plan, {});
                 side.innerHTML = renderSide(plan);
+                spaceLabels(side);
                 var lg = '';
                 if (plan) {
                     plan.forEach(function (p) {
