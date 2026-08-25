@@ -534,7 +534,7 @@
                             <p class="product-inline-caption">Probe and umbilical cord connection</p>
                         </div>
                         <div>
-                            <iframe width="400" height="225" src="https://www.youtube.com/embed/TwCKmaRNYXA?si=asSCNplgr-TAyyea" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <iframe style="width:100%;max-width:400px;aspect-ratio:16/9;height:auto;border:0;border-radius:var(--r-lg);" src="https://www.youtube.com/embed/TwCKmaRNYXA?si=asSCNplgr-TAyyea" title="QFlow 500 probe placement video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                             <p class="product-inline-caption">Probe placement video</p>
                         </div>
                     </div>
@@ -1202,8 +1202,12 @@
         .cfgx-svg-dark { background: #0b1126; border: 1px solid rgba(122, 150, 230, 0.3); border-radius: var(--r-lg); padding: 0.75rem; }
         .cfgx-svg-dark svg { display: block; width: 100%; height: auto; }
         .cfgx-lumen-hotspot { cursor: pointer; }
-        .cfgx-lumen-hotspot:focus { outline: none; }
-        .cfgx-lumen-hotspot:focus .cfgx-hotspot-ring, .cfgx-lumen-hotspot:hover .cfgx-hotspot-ring { stroke: #67e8f9; stroke-width: 2.5; }
+        .cfgx-lumen-hotspot:focus-visible .cfgx-hotspot-ring,
+        .cfgx-lumen-hotspot:focus .cfgx-hotspot-ring,
+        .cfgx-lumen-hotspot:hover .cfgx-hotspot-ring {
+            stroke: #67e8f9; stroke-width: 3;
+            filter: drop-shadow(0 0 4px rgba(103, 232, 249, 0.85));
+        }
         .cfgx-detail-title { font-family: var(--font-display); font-size: 1.25rem; color: #f1f5ff; margin: 0 0 0.25rem; }
         .cfgx-detail-dim { font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace; color: #67e8f9; font-size: 0.875rem; margin: 0 0 1rem; letter-spacing: 0.06em; }
         .cfgx-fit-list { list-style: none; margin: 0.75rem 0 0; padding: 0; }
@@ -1236,7 +1240,7 @@
         .cfg-probe-line { transition: stroke-dashoffset 0.9s cubic-bezier(0.4, 0, 0.2, 1); filter: drop-shadow(0 0 3px rgba(103, 232, 249, 0.35)); }
         .cfg-probe-tip { transition: opacity 0.3s ease 0.85s; }
         .cfgx-scanline { animation: cfgx-scan 1.4s ease-out 1 forwards; }
-        @keyframes cfgx-scan { from { transform: translateY(0); opacity: 0.9; } to { transform: translateY(400px); opacity: 0; } }
+        @keyframes cfgx-scan { from { transform: translateY(0); opacity: 0.9; } to { transform: translateY(470px); opacity: 0; } }
 
         /* Shared bits kept from base design */
         .configurator-header { max-width: 720px; margin-bottom: 2.5rem; }
@@ -1350,7 +1354,11 @@
             var stepEls = [1, 2, 3].map(function (i) { return document.getElementById('cfgx-step-' + i); });
             function setSteps(a, b, c) {
                 var states = [a, b, c];
-                stepEls.forEach(function (el, i) { el.setAttribute('data-state', states[i]); });
+                stepEls.forEach(function (el, i) {
+                    el.setAttribute('data-state', states[i]);
+                    if (states[i] === 'active') el.setAttribute('aria-current', 'step');
+                    else el.removeAttribute('aria-current');
+                });
             }
             var readout = document.getElementById('cfgx-readout');
             function setReadout(picked, bolt) {
@@ -1372,7 +1380,6 @@
                     var ang = (Math.PI / 3) * a + Math.PI / 6;
                     svg += '<circle cx="' + (110 + 92 * Math.cos(ang)).toFixed(1) + '" cy="' + (110 + 92 * Math.sin(ang)).toFixed(1) + '" r="3" fill="#3d4f85"/>';
                 }
-                var i = 0;
                 for (var lumenName in QUAD_SLOTS) {
                     var slot = QUAD_SLOTS[lumenName];
                     var assigned = null;
@@ -1380,6 +1387,8 @@
                     var isSel = selected === lumenName;
                     var open = interactive ? '<g class="cfgx-lumen-hotspot" role="button" tabindex="0" data-lumen="' + esc(lumenName) + '" aria-label="' + esc(lumenName) + '">' : '<g>';
                     svg += open;
+                    /* generous transparent hit area so the lumen is tappable on touch */
+                    if (interactive) svg += '<circle cx="' + slot.td.x + '" cy="' + slot.td.y + '" r="22" fill="transparent"/>';
                     if (isSel) svg += '<circle cx="' + slot.td.x + '" cy="' + slot.td.y + '" r="' + (slot.r + 8) + '" fill="none" stroke="#67e8f9" stroke-width="1.5" stroke-dasharray="4 3"/>';
                     if (assigned) {
                         var c = SENSORS[assigned].color;
@@ -1389,7 +1398,6 @@
                         svg += '<circle class="cfgx-hotspot-ring" cx="' + slot.td.x + '" cy="' + slot.td.y + '" r="' + slot.r + '" fill="#0b1126" stroke="#5a73c7" stroke-width="1.5" stroke-dasharray="3 3"/>';
                     }
                     svg += '</g>';
-                    i++;
                 }
                 svg += '</svg>';
                 return svg;
@@ -1520,9 +1528,6 @@
                         var total = (lenA + lenB).toFixed(1);
                         probes += '<path class="cfg-probe-line" d="M ' + x0 + ' ' + y0 + ' L ' + x1 + ' ' + y1 + ' L ' + x2.toFixed(1) + ' ' + y2.toFixed(1) + '" fill="none" stroke="' + sn.color + '" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="' + total + '" stroke-dashoffset="' + total + '"/>';
                         probes += '<circle class="cfg-probe-tip" cx="' + x2.toFixed(1) + '" cy="' + y2.toFixed(1) + '" r="4.5" fill="' + sn.color + '" opacity="0"/>';
-                        if (p.sensor === 'qflow') {
-                            probes += '<circle class="cfg-probe-tip" cx="' + (x2 - Math.sin(rad) * 14).toFixed(1) + '" cy="' + (y2 - Math.cos(rad) * 14).toFixed(1) + '" r="3" fill="#0b1126" stroke="' + sn.color + '" stroke-width="1.5" opacity="0"/>';
-                        }
                         var lx = x2 + 9, ly = y2 + 9;
                         labels += '<text class="cfg-probe-tip" data-lx="' + lx.toFixed(1) + '" data-ly="' + ly.toFixed(1) +
                             '" data-tx="' + x2.toFixed(1) + '" data-ty="' + y2.toFixed(1) + '" data-color="' + sn.color +
