@@ -1526,6 +1526,12 @@ input, select, textarea { font-family: inherit; }
     box-shadow: 0 0 0 3px rgba(56,82,179,0.12);
     background: white;
 }
+.pub-search-hint {
+    font-size: 0.75rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+    margin: 0.5rem 0 0;
+}
 .pub-search-count {
     font-size: 0.8125rem;
     color: var(--text-muted);

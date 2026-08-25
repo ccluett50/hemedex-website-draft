@@ -260,6 +260,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (publications.length) {
         const PUB_BATCH = 7;
         let searchQuery = '';
+        let searchTerms = [];      // searchQuery split on whitespace; all must match
         let activeKeywords = [];   // lowercase keyword strings, AND-combined
         let shownCount = PUB_BATCH;
         let sortMode = sortSelect ? (sortSelect.value || 'newest') : 'newest';
@@ -284,13 +285,19 @@ document.addEventListener('DOMContentLoaded', function () {
                 const v = parseInt(pair.slice(idx + 1), 10);
                 if (k) counts[k] = isNaN(v) ? 0 : v;
             });
+            // Every author's full name + institution, stamped onto the article by
+            // the inline script in publications.html (data from PubMed/Crossref).
+            // The visible citation line is AMA style — initials, cut off at
+            // 'et al.' — so without this the search box cannot find an author by
+            // their real name, nor anyone past third position on a paper.
+            const authorsFull = pub.dataset.authorsFull || '';
             return {
                 el: pub,
                 origIndex: i,
                 year: parseInt(pub.dataset.year, 10) || 0,
                 citations: parseInt(pub.dataset.citations, 10),
                 selected: pub.dataset.selected === 'true',
-                haystack: (title + ' ' + citation + ' ' + year).toLowerCase(),
+                haystack: (title + ' ' + citation + ' ' + year + ' ' + authorsFull).toLowerCase(),
                 keywords: kws,
                 counts: counts
             };
@@ -307,9 +314,16 @@ document.addEventListener('DOMContentLoaded', function () {
         if (totalCountEl) totalCountEl.textContent = publications.length;
 
         // A pub matches when it satisfies the search AND contains EVERY active keyword.
+        // The search ANDs together every whitespace-separated word instead of
+        // testing one substring, so word order stops mattering: now that author
+        // names are in the haystack, 'briggs jennifer' and 'park columbia' have to
+        // work, and a strict substring test fails both. A single-word query
+        // behaves exactly as it did before.
         function matches(data) {
             if (selectedOnly && !data.selected) return false;
-            if (searchQuery && !data.haystack.includes(searchQuery)) return false;
+            for (const term of searchTerms) {
+                if (!data.haystack.includes(term)) return false;
+            }
             for (const kw of activeKeywords) {
                 if (!data.keywords.includes(kw)) return false;
             }
@@ -399,6 +413,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 clearTimeout(debounceTimer);
                 debounceTimer = setTimeout(() => {
                     searchQuery = this.value.toLowerCase().trim();
+                    searchTerms = searchQuery ? searchQuery.split(/\s+/) : [];
                     shownCount = PUB_BATCH;
                     applyFilters();
                 }, 200);
