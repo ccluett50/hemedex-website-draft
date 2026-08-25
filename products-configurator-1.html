@@ -1002,14 +1002,6 @@
                         </div>
                         <p class="cfg-cta-hint cfgx-availability-hint" id="cfgx-availability" aria-live="polite"></p>
                         <div class="cfgx-readout" id="cfgx-readout" aria-hidden="true"></div>
-                        <div class="cfg-field-cta" id="cfg-field-cta" hidden>
-                            <button type="button" class="btn btn-primary cfgx-cta-btn" id="cfg-field-btn">
-                                View Field Placement
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" style="margin-left:0.35rem;"><polyline points="6 9 12 15 18 9"/></svg>
-                            </button>
-                            <p class="cfg-cta-hint">All four sensors selected — preview the quad bolt in the field.</p>
-                        </div>
-                        <p class="cfg-cta-hint" id="cfg-field-progress" aria-live="polite"></p>
                     </div>
 
                     <div class="configurator-result cfgx-panel" id="cfg-result" aria-live="polite">
@@ -1063,7 +1055,7 @@
                     <div class="cfg-field-inner cfgx-panel">
                         <div class="cfg-field-head">
                             <span class="cfg-bolt-label cfgx-label">Field placement preview</span>
-                            <h3 class="cfg-bolt-name cfgx-light">Quad Lumen Bolt — In the Field</h3>
+                            <h3 class="cfg-bolt-name cfgx-light" id="cfg-field-title">Quad Lumen Bolt — In the Field</h3>
                             <p class="cfg-note cfgx-note" style="margin-top:0;">Schematic illustration — not to scale. The diagram updates as you change your sensor selections above.</p>
                         </div>
                         <div class="cfg-field-views">
@@ -1287,12 +1279,12 @@
                Entries marked with * in SENSORS are dimensional estimates pending Hemedex confirmation. */
             var BOLTS = [
                 {
-                    id: 'single', name: 'QFlow 500™ Single Lumen Bolt Kit', href: '#single-bolt',
+                    id: 'single', name: 'QFlow 500™ Single Lumen Bolt Kit', shortName: 'Single Lumen Bolt', href: '#single-bolt',
                     img: 'images/products/single-bolt.jpg',
                     lumens: [ { name: 'Single Lumen (0.060″)', dia: 0.060, ok: ['qflow', 'depth', 'codman', 'sophysa'] } ]
                 },
                 {
-                    id: 'dual', name: 'QFlow 500™ Dual Lumen Bolt Kit', href: '#dual-bolt',
+                    id: 'dual', name: 'QFlow 500™ Dual Lumen Bolt Kit', shortName: 'Dual Lumen Bolt', href: '#dual-bolt',
                     img: 'images/products/dual-bolt.jpg',
                     lumens: [
                         { name: 'Long Lumen (< 0.089″)',  dia: 0.089, ok: ['qflow', 'camino', 'licox', 'neurovent', 'codman', 'sophysa'] },
@@ -1300,7 +1292,7 @@
                     ]
                 },
                 {
-                    id: 'quad', name: 'QFlow 500™ Quad Lumen Bolt Kit', href: '#quad-bolt',
+                    id: 'quad', name: 'QFlow 500™ Quad Lumen Bolt Kit', shortName: 'Quad Lumen Bolt', href: '#quad-bolt',
                     img: 'images/products/quad-bolt.png',
                     lumens: [
                         { name: 'Long Lumen (< 0.078″)',    dia: 0.078, ok: ['neurovent', 'camino', 'qflow', 'codman', 'sophysa'] },
@@ -1342,12 +1334,22 @@
             selects[0].value = 'qflow';
 
             /* ---------- shared geometry ---------- */
+            var SLOT_GEOM = {
+                single: {
+                    'Single Lumen (0.060″)': { td: { x: 110, y: 110 }, r: 15, angle: 0 }
+                },
+                dual: {
+                    'Long Lumen (< 0.089″)':  { td: { x: 110, y: 84 },  r: 14, angle: -13 },
+                    'Short Lumen (< 0.053″)': { td: { x: 110, y: 142 }, r: 11, angle: 13 }
+                }
+            };
             var QUAD_SLOTS = {
                 'Long Lumen (< 0.078″)':      { td: { x: 110, y: 62 },  r: 12, angle: -20 },
                 'Midsize Lumen A (< 0.064″)': { td: { x: 66, y: 118 },  r: 10, angle: -7 },
                 'Midsize Lumen B (< 0.064″)': { td: { x: 154, y: 118 }, r: 10, angle: 7 },
                 'Short Lumen (< 0.047″)':     { td: { x: 110, y: 160 }, r: 8,  angle: 20 }
             };
+            SLOT_GEOM.quad = QUAD_SLOTS;
             function esc(t) { return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
 
             /* ---------- stepper + readout ---------- */
@@ -1368,7 +1370,7 @@
             }
 
             /* ---------- top-down map (shared by explorer + field view) ---------- */
-            function renderTopDown(plan, opts) {
+            function renderTopDown(slots, plan, opts) {
                 opts = opts || {};
                 var interactive = !!opts.interactive;
                 var selected = opts.selected || null;
@@ -1380,8 +1382,8 @@
                     var ang = (Math.PI / 3) * a + Math.PI / 6;
                     svg += '<circle cx="' + (110 + 92 * Math.cos(ang)).toFixed(1) + '" cy="' + (110 + 92 * Math.sin(ang)).toFixed(1) + '" r="3" fill="#3d4f85"/>';
                 }
-                for (var lumenName in QUAD_SLOTS) {
-                    var slot = QUAD_SLOTS[lumenName];
+                for (var lumenName in slots) {
+                    var slot = slots[lumenName];
                     var assigned = null;
                     if (plan) plan.forEach(function (p) { if (p.lumen === lumenName) assigned = p.sensor; });
                     var isSel = selected === lumenName;
@@ -1410,7 +1412,7 @@
             var lastPlanForBolt = null;
 
             function renderExplorer() {
-                explorerMap.innerHTML = renderTopDown(lastPlanForBolt && lastPlanForBolt.boltId === 'quad' ? lastPlanForBolt.plan : null, { interactive: true, selected: explorerSelected });
+                explorerMap.innerHTML = renderTopDown(QUAD_SLOTS, lastPlanForBolt && lastPlanForBolt.boltId === 'quad' ? lastPlanForBolt.plan : null, { interactive: true, selected: explorerSelected });
                 explorerMap.querySelectorAll('.cfgx-lumen-hotspot').forEach(function (g) {
                     function pick() { explorerSelected = g.getAttribute('data-lumen'); renderExplorer(); }
                     g.addEventListener('click', pick);
@@ -1464,27 +1466,9 @@
 
             /* ---------- field placement ---------- */
             var fieldPanel = document.getElementById('cfg-field');
-            var fieldCta = document.getElementById('cfg-field-cta');
-            var fieldBtn = document.getElementById('cfg-field-btn');
-            var fieldProgress = document.getElementById('cfg-field-progress');
-            var fieldOpen = false;
-            var lastQuadPlan = null;
+            var fieldTitle = document.getElementById('cfg-field-title');
 
-            fieldBtn.addEventListener('click', function () {
-                fieldOpen = true;
-                fieldCta.hidden = true;
-                fieldPanel.hidden = false;
-                setSteps('done', 'done', 'active');
-                requestAnimationFrame(function () {
-                    fieldPanel.classList.add('cfg-field-open');
-                    renderField(lastQuadPlan);
-                    setTimeout(function () {
-                        fieldPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                    }, 150);
-                });
-            });
-
-            function renderSide(plan) {
+            function renderSide(slots, plan, boltName) {
                 var W = 560, H = 470, cx = 280;
                 var duraY = 196, brainBottom = H - 10;
                 var svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Cross-section of the quad lumen bolt seated in the skull with sensors at representative depths">';
@@ -1513,11 +1497,11 @@
                     var ty = 166 + t * 8;
                     svg += '<line x1="' + (cx - 20) + '" y1="' + ty + '" x2="' + (cx + 20) + '" y2="' + ty + '" stroke="#5a73c7" stroke-width="1.5"/>';
                 }
-                svg += '<text x="' + (cx + 54) + '" y="64" font-size="11" fill="#93a5cf" font-family="inherit">Quad Lumen Bolt</text>';
+                svg += '<text x="' + (cx + 54) + '" y="64" font-size="11" fill="#93a5cf" font-family="inherit">' + esc(boltName) + '</text>';
                 var probes = '', labels = '';
                 if (plan) {
                     plan.forEach(function (p) {
-                        var slot = QUAD_SLOTS[p.lumen];
+                        var slot = slots[p.lumen];
                         if (!slot) return;
                         var sn = SENSORS[p.sensor];
                         var rad = slot.angle * Math.PI / 180;
@@ -1590,12 +1574,16 @@
                 });
             }
 
-            function renderField(plan) {
+            function renderField(bolt, plan) {
+                var slots = SLOT_GEOM[bolt.id];
                 var td = document.getElementById('cfg-topdown');
                 var side = document.getElementById('cfg-side');
                 var legend = document.getElementById('cfg-legend');
-                td.innerHTML = renderTopDown(plan, {});
-                side.innerHTML = renderSide(plan);
+                fieldTitle.textContent = bolt.shortName + ' — In the Field';
+                fieldPanel.hidden = false;
+                fieldPanel.classList.add('cfg-field-open');
+                td.innerHTML = renderTopDown(slots, plan, {});
+                side.innerHTML = renderSide(slots, plan, bolt.shortName);
                 spaceLabels(side);
                 var lg = '';
                 if (plan) {
@@ -1614,10 +1602,8 @@
             }
 
             function closeField() {
-                fieldOpen = false;
                 fieldPanel.classList.remove('cfg-field-open');
                 fieldPanel.hidden = true;
-                fieldCta.hidden = true;
             }
 
             /* ---------- availability gating ----------
@@ -1668,7 +1654,7 @@
                 var picked = selects.map(function (e) { return e.value; }).filter(Boolean);
                 if (!picked.length) {
                     box.innerHTML = '<p class="cfg-placeholder">Select one or more sensors to see a recommended configuration.</p>';
-                    lastQuadPlan = null; lastPlanForBolt = null; closeField(); fieldProgress.textContent = '';
+                    lastPlanForBolt = null; closeField();
                     setSteps('active', 'idle', 'idle'); setReadout(picked, null); renderExplorer();
                     return;
                 }
@@ -1680,7 +1666,7 @@
                 if (!bolt) {
                     box.innerHTML = '<div class="cfg-warn">No published single-bolt configuration covers this sensor combination. ' +
                         'Consider splitting sensors across two bolts, or <a href="contact.html">contact Hemedex</a> to discuss options.</div>';
-                    lastQuadPlan = null; lastPlanForBolt = null; closeField(); fieldProgress.textContent = '';
+                    lastPlanForBolt = null; closeField();
                     setSteps('active', 'idle', 'idle'); setReadout(picked, null); renderExplorer();
                     return;
                 }
@@ -1713,27 +1699,9 @@
                 setReadout(picked, bolt);
                 renderExplorer();
 
-                var quadReady = (bolt.id === 'quad' && picked.length === 4);
-                if (quadReady) {
-                    lastQuadPlan = plan;
-                    fieldProgress.textContent = '';
-                    if (fieldOpen) {
-                        setSteps('done', 'done', 'active');
-                        renderField(plan);
-                    } else {
-                        setSteps('done', 'active', 'idle');
-                        fieldCta.hidden = false;
-                    }
-                } else {
-                    lastQuadPlan = null;
-                    closeField();
-                    setSteps('active', picked.length ? 'active' : 'idle', 'idle');
-                    if (picked.length < 4) {
-                        fieldProgress.textContent = 'Select ' + (4 - picked.length) + ' more sensor' + (4 - picked.length === 1 ? '' : 's') + ' to unlock the quad bolt field placement preview.';
-                    } else {
-                        fieldProgress.textContent = '';
-                    }
-                }
+                /* the field diagram tracks the current selection for every bolt type */
+                renderField(bolt, plan);
+                setSteps('done', picked.length === bolt.lumens.length ? 'done' : 'active', 'active');
             }
 
             renderBars();
