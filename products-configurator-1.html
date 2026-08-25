@@ -955,18 +955,35 @@
         </section>
 
         <!-- ================================================
-             BOLT CONFIGURATOR (CONCEPT PREVIEW — v1 with field placement diagram)
+             BOLT CONFIGURATOR (CONCEPT PREVIEW — v1 futuristic instrument panel)
              ================================================ -->
-        <section class="product-detail" id="bolt-configurator">
+        <section class="product-detail cfgx-section" id="bolt-configurator">
             <div class="container">
-                <div class="configurator-header">
+                <div class="configurator-header cfgx-header">
                     <span class="badge badge-dev" style="margin-bottom:0.75rem;display:inline-block;">Concept Preview — For Internal Review</span>
-                    <h2 class="product-detail-title">Build Your Multimodal Monitoring Configuration</h2>
-                    <p class="product-detail-desc">Select the sensors you plan to place and receive a recommended bolt type with a suggested sensor-to-lumen assignment, based on the published compatibility charts. Once all four sensors are selected for a Quad Lumen configuration, you can preview how the bolt and sensors sit in the field.</p>
+                    <h2 class="product-detail-title cfgx-title">Build Your Multimodal Monitoring Configuration</h2>
+                    <p class="product-detail-desc cfgx-desc">Choose the sensors you plan to place. The configurator recommends a bolt, assigns each sensor to a compatible lumen, and shows you exactly how the configuration sits in the field.</p>
                 </div>
 
-                <div class="configurator-grid">
-                    <div class="configurator-inputs">
+                <!-- Stepper -->
+                <ol class="cfgx-stepper" aria-label="Configuration steps">
+                    <li class="cfgx-step" id="cfgx-step-1" data-state="active">
+                        <span class="cfgx-step-num" aria-hidden="true">1</span>
+                        <span class="cfgx-step-label">Select Sensors</span>
+                    </li>
+                    <li class="cfgx-step" id="cfgx-step-2" data-state="idle">
+                        <span class="cfgx-step-num" aria-hidden="true">2</span>
+                        <span class="cfgx-step-label">Review Bolt &amp; Lumen Fit</span>
+                    </li>
+                    <li class="cfgx-step" id="cfgx-step-3" data-state="idle">
+                        <span class="cfgx-step-num" aria-hidden="true">3</span>
+                        <span class="cfgx-step-label">View Field Placement</span>
+                    </li>
+                </ol>
+
+                <div class="configurator-grid cfgx-grid">
+                    <div class="configurator-inputs cfgx-panel">
+                        <h3 class="cfgx-panel-title">Sensor Selection</h3>
                         <div class="config-slot">
                             <label for="cfg-sensor-1">Sensor 1</label>
                             <select id="cfg-sensor-1" class="cfg-select"></select>
@@ -983,107 +1000,277 @@
                             <label for="cfg-sensor-4">Sensor 4</label>
                             <select id="cfg-sensor-4" class="cfg-select"></select>
                         </div>
+                        <div class="cfgx-readout" id="cfgx-readout" aria-hidden="true"></div>
                         <div class="cfg-field-cta" id="cfg-field-cta" hidden>
-                            <button type="button" class="btn btn-primary" id="cfg-field-btn">
+                            <button type="button" class="btn btn-primary cfgx-cta-btn" id="cfg-field-btn">
                                 View Field Placement
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" style="margin-left:0.35rem;"><polyline points="6 9 12 15 18 9"/></svg>
                             </button>
                             <p class="cfg-cta-hint">All four sensors selected — preview the quad bolt in the field.</p>
                         </div>
-                        <p class="cfg-cta-hint" id="cfg-field-progress"></p>
+                        <p class="cfg-cta-hint" id="cfg-field-progress" aria-live="polite"></p>
                     </div>
 
-                    <div class="configurator-result" id="cfg-result" aria-live="polite">
+                    <div class="configurator-result cfgx-panel" id="cfg-result" aria-live="polite">
                         <p class="cfg-placeholder">Select one or more sensors to see a recommended configuration.</p>
                     </div>
                 </div>
 
-                <!-- Field placement panel (revealed when all four sensors are confirmed) -->
-                <div class="cfg-field" id="cfg-field" aria-live="polite" hidden>
-                    <div class="cfg-field-inner">
-                        <div class="cfg-field-head">
-                            <span class="cfg-bolt-label">Field placement preview</span>
-                            <h3 class="cfg-bolt-name" style="margin-bottom:0.25rem;">Quad Lumen Bolt — In the Field</h3>
-                            <p class="cfg-note" style="margin-top:0;">Schematic illustration — not to scale. The diagram updates as you change your sensor selections above.</p>
+                <!-- How the bolt works -->
+                <div class="cfgx-edu">
+                    <h3 class="cfgx-subhead">How a Cranial Bolt Works</h3>
+                    <div class="cfgx-edu-grid">
+                        <div class="cfgx-edu-card">
+                            <svg class="cfgx-edu-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="24" cy="24" r="16"/><circle cx="24" cy="24" r="6"/><line x1="24" y1="2" x2="24" y2="8"/><line x1="24" y1="40" x2="24" y2="46"/><line x1="2" y1="24" x2="8" y2="24"/><line x1="40" y1="24" x2="46" y2="24"/></svg>
+                            <h4>1 · A Single Burr Hole</h4>
+                            <p>A small opening is made in the skull at the bedside. One access point is all the bolt needs — no additional craniotomy, no multiple penetrations of the scalp.</p>
                         </div>
-                        <div class="cfg-field-views">
-                            <div class="cfg-view">
-                                <h4 class="cfg-view-title">Top-Down Lumen Map</h4>
-                                <div class="cfg-svg-wrap" id="cfg-topdown"></div>
-                            </div>
-                            <div class="cfg-view">
-                                <h4 class="cfg-view-title">Cross-Section Through the Burr Hole</h4>
-                                <div class="cfg-svg-wrap" id="cfg-side"></div>
-                            </div>
+                        <div class="cfgx-edu-card">
+                            <svg class="cfgx-edu-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="14" y="4" width="20" height="10" rx="2"/><rect x="18" y="14" width="12" height="26"/><line x1="18" y1="20" x2="30" y2="20"/><line x1="18" y1="26" x2="30" y2="26"/><line x1="18" y1="32" x2="30" y2="32"/></svg>
+                            <h4>2 · Threaded Titanium Fixation</h4>
+                            <p>The bolt threads securely into the skull like an anchor, holding every sensor in a stable, fixed position for up to 10 days of continuous monitoring.</p>
                         </div>
-                        <div class="cfg-legend" id="cfg-legend"></div>
-                        <p class="cfg-note">The QFlow 500™ Perfusion Probe is inserted using the Probe Dura Piercer and Introducer to the recommended 2.5–3&nbsp;cm depth below the dura. Other sensor depths shown are representative only — always follow each manufacturer's instructions for use.</p>
+                        <div class="cfgx-edu-card">
+                            <svg class="cfgx-edu-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M24 4 v14"/><path d="M24 18 l-12 24"/><path d="M24 18 l-4 26"/><path d="M24 18 l4 26"/><path d="M24 18 l12 24"/><circle cx="12" cy="42" r="2.5" fill="currentColor"/><circle cx="20" cy="44" r="2.5" fill="currentColor"/><circle cx="28" cy="44" r="2.5" fill="currentColor"/><circle cx="36" cy="42" r="2.5" fill="currentColor"/></svg>
+                            <h4>3 · Lumens Guide Each Sensor</h4>
+                            <p>Inside the bolt, up to four separate channels — lumens — angle gently apart so each sensor reaches its own region of brain tissue without interfering with its neighbors.</p>
+                        </div>
                     </div>
                 </div>
 
-                <p class="cfg-disclaimer">This tool is a draft concept for internal review. Lumen assignments are derived from the published dimensional compatibility charts; entries marked * are dimensional estimates pending confirmation by Hemedex. Dimensional compatibility does not imply endorsement by the sensor manufacturer. Hemedex makes no claims with respect to the functionality and performance of any sensor other than the Hemedex QFlow 500™ Perfusion Probe.</p>
+                <!-- Lumen explorer -->
+                <div class="cfgx-explorer">
+                    <h3 class="cfgx-subhead">Explore the Quad Bolt Lumens</h3>
+                    <p class="cfgx-explorer-hint">Each lumen has a different inner diameter — that is why sensor-to-lumen assignment matters. Select a lumen on the map to see what fits.</p>
+                    <div class="cfgx-explorer-grid">
+                        <div class="cfgx-panel cfgx-explorer-map">
+                            <div class="cfg-svg-wrap cfgx-svg-dark" id="cfgx-lumen-map"></div>
+                        </div>
+                        <div class="cfgx-panel cfgx-explorer-detail" id="cfgx-lumen-detail" aria-live="polite">
+                            <p class="cfg-placeholder">Select a lumen on the map.</p>
+                        </div>
+                    </div>
+                    <div class="cfgx-panel cfgx-sizebars">
+                        <h4 class="cfgx-panel-title">Lumen Inner Diameters Compared</h4>
+                        <div id="cfgx-bars"></div>
+                        <p class="cfg-note cfgx-note">Larger sensors need larger lumens. The configurator automatically routes each of your sensors to a lumen wide enough to accept it.</p>
+                    </div>
+                </div>
+
+                <!-- Field placement panel -->
+                <div class="cfg-field" id="cfg-field" aria-live="polite" hidden>
+                    <div class="cfg-field-inner cfgx-panel">
+                        <div class="cfg-field-head">
+                            <span class="cfg-bolt-label cfgx-label">Field placement preview</span>
+                            <h3 class="cfg-bolt-name cfgx-light">Quad Lumen Bolt — In the Field</h3>
+                            <p class="cfg-note cfgx-note" style="margin-top:0;">Schematic illustration — not to scale. The diagram updates as you change your sensor selections above.</p>
+                        </div>
+                        <div class="cfg-field-views">
+                            <div class="cfg-view">
+                                <h4 class="cfg-view-title cfgx-label">Top-Down Lumen Map</h4>
+                                <div class="cfg-svg-wrap cfgx-svg-dark" id="cfg-topdown"></div>
+                            </div>
+                            <div class="cfg-view">
+                                <h4 class="cfg-view-title cfgx-label">Cross-Section Through the Burr Hole</h4>
+                                <div class="cfg-svg-wrap cfgx-svg-dark" id="cfg-side"></div>
+                            </div>
+                        </div>
+                        <div class="cfg-legend" id="cfg-legend"></div>
+                        <p class="cfg-note cfgx-note">The QFlow 500™ Perfusion Probe is inserted using the Probe Dura Piercer and Introducer to the recommended 2.5–3&nbsp;cm depth below the dura. Other sensor depths shown are representative only — always follow each manufacturer's instructions for use.</p>
+                    </div>
+                </div>
+
+                <p class="cfg-disclaimer cfgx-note">This tool is a draft concept for internal review. Lumen assignments are derived from the published dimensional compatibility charts; entries marked * are dimensional estimates pending confirmation by Hemedex. Dimensional compatibility does not imply endorsement by the sensor manufacturer. Hemedex makes no claims with respect to the functionality and performance of any sensor other than the Hemedex QFlow 500™ Perfusion Probe.</p>
             </div>
         </section>
 
         <style>
-        .configurator-header { max-width: 720px; margin-bottom: 2.5rem; }
-        .configurator-grid { display: grid; grid-template-columns: minmax(260px, 380px) 1fr; gap: 2.5rem; align-items: start; }
-        @media (max-width: 860px) { .configurator-grid { grid-template-columns: 1fr; } }
-        .config-slot { margin-bottom: 1.25rem; }
-        .config-slot label { display: block; font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); margin-bottom: 0.4rem; }
-        .cfg-select { width: 100%; padding: 0.7rem 0.9rem; font-size: 0.9375rem; font-family: inherit; color: var(--text-heading); background: var(--bg-white, #fff); border: 1px solid var(--border); border-radius: var(--r-md); cursor: pointer; }
-        .cfg-select:focus { outline: 2px solid var(--primary); outline-offset: 1px; }
-        .configurator-result { background: var(--bg-off, #f8f9fc); border: 1px solid var(--border); border-radius: var(--r-xl); padding: 1.75rem; min-height: 220px; }
-        .cfg-placeholder { color: var(--text-muted); font-style: italic; }
-        .cfg-bolt-name { font-family: var(--font-display); font-size: 1.375rem; color: var(--text-heading); margin: 0 0 0.25rem; }
-        .cfg-bolt-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--primary); }
-        .cfg-result-grid { display: grid; grid-template-columns: 1fr auto; gap: 1.5rem; align-items: start; }
-        @media (max-width: 640px) { .cfg-result-grid { grid-template-columns: 1fr; } }
-        .cfg-bolt-img { width: 150px; max-width: 100%; border-radius: var(--r-lg); border: 1px solid var(--border); background: #fff; }
-        .cfg-assign-table { width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: 0.9rem; }
-        .cfg-assign-table th, .cfg-assign-table td { text-align: left; padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--border); }
-        .cfg-assign-table th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); }
-        .cfg-assign-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 0.5rem; vertical-align: baseline; }
-        .cfg-note { font-size: 0.8125rem; color: var(--text-muted); margin-top: 0.75rem; }
-        .cfg-warn { background: #fdf3e7; border: 1px solid #edcfa6; border-radius: var(--r-md); padding: 0.75rem 1rem; font-size: 0.875rem; margin-top: 1rem; color: #7a5217; }
-        .cfg-video { margin-top: 1.5rem; }
-        .cfg-video iframe { width: 100%; max-width: 480px; aspect-ratio: 16 / 9; height: auto; border: 0; border-radius: var(--r-lg); }
-        .cfg-disclaimer { font-size: 0.8125rem; color: var(--text-muted); margin-top: 2rem; max-width: 900px; }
+        /* ---------- Futuristic instrument-panel treatment (scoped to .cfgx-section) ---------- */
+        .cfgx-section {
+            background:
+                radial-gradient(1100px 500px at 15% -5%, rgba(90, 115, 199, 0.16), transparent 60%),
+                radial-gradient(900px 420px at 90% 10%, rgba(103, 232, 249, 0.07), transparent 55%),
+                linear-gradient(180deg, #0b1126 0%, #0e1530 55%, #0b1126 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .cfgx-section::before {
+            content: '';
+            position: absolute; inset: 0;
+            background-image:
+                linear-gradient(rgba(122, 150, 230, 0.055) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(122, 150, 230, 0.055) 1px, transparent 1px);
+            background-size: 44px 44px;
+            pointer-events: none;
+        }
+        .cfgx-section .container { position: relative; }
+        .cfgx-title { color: #f1f5ff; }
+        .cfgx-desc { color: #b7c4e6; }
+        .cfgx-header { max-width: 760px; margin-bottom: 2rem; }
 
-        /* --- Field placement additions (v1) --- */
-        .cfg-field-cta { margin-top: 0.5rem; }
-        .cfg-cta-hint { font-size: 0.8125rem; color: var(--text-muted); margin-top: 0.5rem; }
+        /* Stepper */
+        .cfgx-stepper { display: flex; gap: 0.75rem; list-style: none; margin: 0 0 2.25rem; padding: 0; flex-wrap: wrap; }
+        .cfgx-step {
+            display: flex; align-items: center; gap: 0.6rem;
+            padding: 0.6rem 1.1rem;
+            border: 1px solid rgba(122, 150, 230, 0.28);
+            border-radius: 999px;
+            background: rgba(17, 26, 54, 0.75);
+            color: #93a5cf; font-size: 0.8125rem; font-weight: 600;
+            letter-spacing: 0.04em;
+            transition: border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+        }
+        .cfgx-step-num {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 24px; height: 24px; border-radius: 50%;
+            border: 1.5px solid currentColor; font-size: 0.75rem;
+        }
+        .cfgx-step[data-state="active"] { color: #8fd8f2; border-color: rgba(125, 211, 252, 0.65); box-shadow: 0 0 14px rgba(103, 232, 249, 0.18), inset 0 0 10px rgba(103, 232, 249, 0.06); }
+        .cfgx-step[data-state="done"] { color: #8ee6b8; border-color: rgba(110, 231, 183, 0.5); }
+        .cfgx-step[data-state="done"] .cfgx-step-num { border-style: solid; }
+
+        /* Panels */
+        .cfgx-panel {
+            background: rgba(15, 23, 48, 0.88);
+            border: 1px solid rgba(122, 150, 230, 0.28);
+            border-radius: var(--r-xl);
+            padding: 1.75rem;
+            backdrop-filter: blur(4px);
+        }
+        .cfgx-panel-title { font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #8fd8f2; margin: 0 0 1.25rem; }
+        .cfgx-label { color: #8fd8f2; }
+        .cfgx-light { color: #f1f5ff; }
+        .cfgx-note { color: #93a5cf; }
+
+        .cfgx-grid { grid-template-columns: minmax(280px, 400px) 1fr; }
+        @media (max-width: 860px) { .cfgx-grid { grid-template-columns: 1fr; } }
+
+        .cfgx-section .config-slot label { color: #93a5cf; }
+        .cfgx-section .cfg-select {
+            background: #0b1126; color: #e4eaf9;
+            border: 1px solid rgba(122, 150, 230, 0.38);
+        }
+        .cfgx-section .cfg-select:focus { outline: 3px solid #67e8f9; outline-offset: 1px; }
+        .cfgx-section .cfg-placeholder { color: #93a5cf; }
+        .cfgx-section .configurator-result { background: rgba(15, 23, 48, 0.88); border-color: rgba(122, 150, 230, 0.28); }
+        .cfgx-section .cfg-bolt-name, .cfgx-section .cfg-bolt-name a { color: #f1f5ff; }
+        .cfgx-section .cfg-bolt-name a:hover { color: #8fd8f2; }
+        .cfgx-section .cfg-bolt-label { color: #8fd8f2; }
+        .cfgx-section .cfg-assign-table th { color: #93a5cf; border-color: rgba(122, 150, 230, 0.22); }
+        .cfgx-section .cfg-assign-table td { color: #dbe3f6; border-color: rgba(122, 150, 230, 0.22); }
+        .cfgx-section .cfg-note { color: #93a5cf; }
+        .cfgx-section .cfg-warn { background: rgba(240, 200, 105, 0.1); border-color: rgba(240, 200, 105, 0.4); color: #f0d79b; }
+        .cfgx-section .cfg-warn a { color: #8fd8f2; }
+        .cfgx-section .cfg-bolt-img { border-color: rgba(122, 150, 230, 0.35); }
+        .cfgx-section .cfg-cta-hint { color: #93a5cf; }
+        .cfgx-readout {
+            font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+            font-size: 0.75rem; letter-spacing: 0.08em;
+            color: #67e8f9; opacity: 0.9;
+            border-top: 1px dashed rgba(122, 150, 230, 0.3);
+            padding-top: 0.9rem; margin-top: 0.5rem;
+            min-height: 1.4em; white-space: pre-line;
+        }
+        .cfgx-cta-btn { box-shadow: 0 0 18px rgba(103, 232, 249, 0.25); }
+
+        /* Education cards */
+        .cfgx-subhead { font-family: var(--font-display); font-size: 1.5rem; color: #f1f5ff; margin: 3rem 0 0.5rem; }
+        .cfgx-edu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 1.25rem; }
+        @media (max-width: 860px) { .cfgx-edu-grid { grid-template-columns: 1fr; } }
+        .cfgx-edu-card {
+            background: rgba(15, 23, 48, 0.88);
+            border: 1px solid rgba(122, 150, 230, 0.28);
+            border-radius: var(--r-lg); padding: 1.5rem;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+        .cfgx-edu-card:hover { border-color: rgba(125, 211, 252, 0.55); box-shadow: 0 0 20px rgba(103, 232, 249, 0.1); }
+        .cfgx-edu-icon { width: 40px; height: 40px; color: #8fd8f2; margin-bottom: 0.9rem; }
+        .cfgx-edu-card h4 { color: #e4eaf9; font-size: 1rem; margin: 0 0 0.5rem; }
+        .cfgx-edu-card p { color: #a9b8dd; font-size: 0.9rem; line-height: 1.65; margin: 0; }
+
+        /* Lumen explorer */
+        .cfgx-explorer-hint { color: #a9b8dd; font-size: 0.9375rem; max-width: 640px; margin: 0 0 1.25rem; }
+        .cfgx-explorer-grid { display: grid; grid-template-columns: minmax(240px, 340px) 1fr; gap: 1.25rem; align-items: stretch; margin-bottom: 1.25rem; }
+        @media (max-width: 820px) { .cfgx-explorer-grid { grid-template-columns: 1fr; } }
+        .cfgx-svg-dark { background: #0b1126; border: 1px solid rgba(122, 150, 230, 0.3); border-radius: var(--r-lg); padding: 0.75rem; }
+        .cfgx-svg-dark svg { display: block; width: 100%; height: auto; }
+        .cfgx-lumen-hotspot { cursor: pointer; }
+        .cfgx-lumen-hotspot:focus { outline: none; }
+        .cfgx-lumen-hotspot:focus .cfgx-hotspot-ring, .cfgx-lumen-hotspot:hover .cfgx-hotspot-ring { stroke: #67e8f9; stroke-width: 2.5; }
+        .cfgx-detail-title { font-family: var(--font-display); font-size: 1.25rem; color: #f1f5ff; margin: 0 0 0.25rem; }
+        .cfgx-detail-dim { font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace; color: #67e8f9; font-size: 0.875rem; margin: 0 0 1rem; letter-spacing: 0.06em; }
+        .cfgx-fit-list { list-style: none; margin: 0.75rem 0 0; padding: 0; }
+        .cfgx-fit-list li { display: flex; align-items: center; gap: 0.6rem; padding: 0.45rem 0; border-bottom: 1px solid rgba(122, 150, 230, 0.18); color: #dbe3f6; font-size: 0.9rem; }
+        .cfgx-fit-list li:last-child { border-bottom: 0; }
+        .cfgx-assigned-chip { margin-left: auto; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #8ee6b8; border: 1px solid rgba(110, 231, 183, 0.45); border-radius: 999px; padding: 0.15rem 0.6rem; }
+
+        /* Size bars */
+        .cfgx-bar-row { display: grid; grid-template-columns: minmax(140px, 220px) 1fr 70px; gap: 0.9rem; align-items: center; padding: 0.45rem 0; }
+        @media (max-width: 640px) { .cfgx-bar-row { grid-template-columns: 110px 1fr 62px; gap: 0.6rem; } }
+        .cfgx-bar-name { font-size: 0.8125rem; color: #b7c4e6; }
+        .cfgx-bar-track { display: block; height: 14px; background: rgba(122, 150, 230, 0.12); border-radius: 7px; overflow: hidden; }
+        .cfgx-bar-fill { display: block; height: 100%; border-radius: 7px; background: linear-gradient(90deg, #5a73c7, #67e8f9); width: 0; transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 0 10px rgba(103, 232, 249, 0.35); }
+        .cfgx-bar-val { font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace; font-size: 0.75rem; color: #8fd8f2; text-align: right; }
+
+        /* Field placement (dark restyle) */
+        .cfg-field-cta { margin-top: 0.75rem; }
+        .cfg-cta-hint { font-size: 0.8125rem; margin-top: 0.5rem; }
         .cfg-field { overflow: hidden; max-height: 0; opacity: 0; transition: max-height 0.6s ease, opacity 0.5s ease 0.1s; }
-        .cfg-field.cfg-field-open { max-height: 2200px; opacity: 1; }
-        .cfg-field-inner { margin-top: 2.5rem; background: var(--bg-off, #f8f9fc); border: 1px solid var(--border); border-radius: var(--r-xl); padding: 2rem; }
+        .cfg-field.cfg-field-open { max-height: 2400px; opacity: 1; }
+        .cfg-field-inner { margin-top: 2.5rem; }
         .cfg-field-head { margin-bottom: 1.5rem; }
         .cfg-field-views { display: grid; grid-template-columns: minmax(220px, 300px) 1fr; gap: 2rem; align-items: start; }
         @media (max-width: 820px) { .cfg-field-views { grid-template-columns: 1fr; } }
-        .cfg-view-title { font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); margin: 0 0 0.75rem; }
-        .cfg-svg-wrap { background: #fff; border: 1px solid var(--border); border-radius: var(--r-lg); padding: 0.75rem; }
-        .cfg-svg-wrap svg { display: block; width: 100%; height: auto; }
+        .cfg-view-title { font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 0.75rem; }
         .cfg-legend { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; margin-top: 1.25rem; }
-        .cfg-legend-item { display: inline-flex; align-items: center; font-size: 0.8125rem; color: var(--text-body); }
+        .cfg-legend-item { display: inline-flex; align-items: center; font-size: 0.8125rem; color: #dbe3f6; }
         .cfg-legend-item .cfg-assign-dot { margin-right: 0.4rem; }
-        .cfg-probe-line { transition: stroke-dashoffset 0.9s cubic-bezier(0.4, 0, 0.2, 1); }
+        .cfg-assign-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 0.5rem; vertical-align: baseline; }
+        .cfg-probe-line { transition: stroke-dashoffset 0.9s cubic-bezier(0.4, 0, 0.2, 1); filter: drop-shadow(0 0 3px rgba(103, 232, 249, 0.35)); }
         .cfg-probe-tip { transition: opacity 0.3s ease 0.85s; }
+        .cfgx-scanline { animation: cfgx-scan 1.4s ease-out 1 forwards; }
+        @keyframes cfgx-scan { from { transform: translateY(0); opacity: 0.9; } to { transform: translateY(400px); opacity: 0; } }
+
+        /* Shared bits kept from base design */
+        .configurator-header { max-width: 720px; margin-bottom: 2.5rem; }
+        .configurator-grid { display: grid; gap: 2.5rem; align-items: start; }
+        .config-slot { margin-bottom: 1.25rem; }
+        .config-slot label { display: block; font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.4rem; }
+        .cfg-select { width: 100%; padding: 0.7rem 0.9rem; font-size: 0.9375rem; font-family: inherit; border-radius: var(--r-md); cursor: pointer; }
+        .configurator-result { min-height: 220px; }
+        .cfg-placeholder { font-style: italic; }
+        .cfg-bolt-name { font-family: var(--font-display); font-size: 1.375rem; margin: 0 0 0.25rem; }
+        .cfg-bolt-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
+        .cfg-result-grid { display: grid; grid-template-columns: 1fr auto; gap: 1.5rem; align-items: start; }
+        @media (max-width: 640px) { .cfg-result-grid { grid-template-columns: 1fr; } }
+        .cfg-bolt-img { width: 150px; max-width: 100%; border-radius: var(--r-lg); border: 1px solid; background: #fff; }
+        .cfg-assign-table { width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: 0.9rem; }
+        .cfg-assign-table th, .cfg-assign-table td { text-align: left; padding: 0.5rem 0.75rem; border-bottom: 1px solid; }
+        .cfg-assign-table th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; }
+        .cfg-note { font-size: 0.8125rem; margin-top: 0.75rem; }
+        .cfg-warn { border: 1px solid; border-radius: var(--r-md); padding: 0.75rem 1rem; font-size: 0.875rem; margin-top: 1rem; }
+        .cfg-video { margin-top: 1.5rem; }
+        .cfg-video iframe { width: 100%; max-width: 480px; aspect-ratio: 16 / 9; height: auto; border: 0; border-radius: var(--r-lg); }
+        .cfg-disclaimer { font-size: 0.8125rem; margin-top: 2.5rem; max-width: 900px; }
+
         @media (prefers-reduced-motion: reduce) {
-            .cfg-field, .cfg-probe-line, .cfg-probe-tip { transition: none; }
+            .cfg-field, .cfg-probe-line, .cfg-probe-tip, .cfgx-bar-fill, .cfgx-step, .cfgx-edu-card { transition: none; }
+            .cfgx-scanline { animation: none; opacity: 0; }
         }
         </style>
 
         <script>
         (function () {
             var SENSORS = {
-                qflow:     { label: 'QFlow 500™ Perfusion Probe (CBF)', short: 'QFlow 500 (CBF)', star: false, color: '#3852b3', depth: 112 },
-                camino:    { label: 'Integra Camino® ICP', short: 'Camino ICP', star: false, color: '#b3543f', depth: 72 },
-                codman:    { label: 'Codman Microsensor ICP', short: 'Codman ICP', star: true, color: '#b3543f', depth: 72 },
-                sophysa:   { label: 'Sophysa ICP (PSO-PTT)', short: 'Sophysa ICP', star: true, color: '#b3543f', depth: 72 },
-                neurovent: { label: 'Raumedic Neurovent-PTO (ICP + PbtO₂)', short: 'Neurovent-PTO', star: false, color: '#6b4fa0', depth: 92 },
-                licox:     { label: 'Integra Licox® PbtO₂', short: 'Licox PbtO₂', star: false, color: '#0e7490', depth: 96 },
-                mdialysis: { label: 'M Dialysis 70/71 Microdialysis Catheter', short: 'Microdialysis', star: false, color: '#b07a1e', depth: 84 },
-                depth:     { label: 'Natus dEEG Depth Electrode', short: 'Depth Electrode', star: false, color: '#4d7c0f', depth: 124 },
-                temp:      { label: 'Temperature Probe', short: 'Temperature', star: false, color: '#64748b', depth: 70 }
+                qflow:     { label: 'QFlow 500™ Perfusion Probe (CBF)', short: 'QFlow 500 (CBF)', star: false, color: '#8da2f2', depth: 112 },
+                camino:    { label: 'Integra Camino® ICP', short: 'Camino ICP', star: false, color: '#f0977f', depth: 72 },
+                codman:    { label: 'Codman Microsensor ICP', short: 'Codman ICP', star: true, color: '#f0977f', depth: 72 },
+                sophysa:   { label: 'Sophysa ICP (PSO-PTT)', short: 'Sophysa ICP', star: true, color: '#f0977f', depth: 72 },
+                neurovent: { label: 'Raumedic Neurovent-PTO (ICP + PbtO₂)', short: 'Neurovent-PTO', star: false, color: '#c9aef5', depth: 92 },
+                licox:     { label: 'Integra Licox® PbtO₂', short: 'Licox PbtO₂', star: false, color: '#5eead4', depth: 96 },
+                mdialysis: { label: 'M Dialysis 70/71 Microdialysis Catheter', short: 'Microdialysis', star: false, color: '#f0c869', depth: 84 },
+                depth:     { label: 'Natus dEEG Depth Electrode', short: 'Depth Electrode', star: false, color: '#a7db7c', depth: 124 },
+                temp:      { label: 'Temperature Probe', short: 'Temperature', star: false, color: '#a8b6cc', depth: 70 }
             };
             /* Lumen compatibility from the published charts.
                Entries marked with * in SENSORS are dimensional estimates pending Hemedex confirmation. */
@@ -1091,27 +1278,28 @@
                 {
                     id: 'single', name: 'QFlow 500™ Single Lumen Bolt Kit', href: '#single-bolt',
                     img: 'images/products/single-bolt.jpg',
-                    lumens: [ { name: 'Single Lumen (0.060″)', ok: ['qflow', 'depth', 'codman', 'sophysa'] } ]
+                    lumens: [ { name: 'Single Lumen (0.060″)', dia: 0.060, ok: ['qflow', 'depth', 'codman', 'sophysa'] } ]
                 },
                 {
                     id: 'dual', name: 'QFlow 500™ Dual Lumen Bolt Kit', href: '#dual-bolt',
                     img: 'images/products/dual-bolt.jpg',
                     lumens: [
-                        { name: 'Long Lumen (< 0.089″)',  ok: ['qflow', 'camino', 'licox', 'neurovent', 'codman', 'sophysa'] },
-                        { name: 'Short Lumen (< 0.053″)', ok: ['camino', 'depth', 'mdialysis', 'temp', 'codman', 'sophysa'] }
+                        { name: 'Long Lumen (< 0.089″)',  dia: 0.089, ok: ['qflow', 'camino', 'licox', 'neurovent', 'codman', 'sophysa'] },
+                        { name: 'Short Lumen (< 0.053″)', dia: 0.053, ok: ['camino', 'depth', 'mdialysis', 'temp', 'codman', 'sophysa'] }
                     ]
                 },
                 {
                     id: 'quad', name: 'QFlow 500™ Quad Lumen Bolt Kit', href: '#quad-bolt',
                     img: 'images/products/quad-bolt.png',
                     lumens: [
-                        { name: 'Long Lumen (< 0.078″)',    ok: ['neurovent', 'camino', 'qflow', 'codman', 'sophysa'] },
-                        { name: 'Midsize Lumen A (< 0.064″)', ok: ['licox', 'mdialysis', 'depth'] },
-                        { name: 'Midsize Lumen B (< 0.064″)', ok: ['licox', 'mdialysis', 'depth'] },
-                        { name: 'Short Lumen (< 0.047″)',   ok: ['qflow', 'camino', 'temp', 'codman', 'sophysa'] }
+                        { name: 'Long Lumen (< 0.078″)',    dia: 0.078, ok: ['neurovent', 'camino', 'qflow', 'codman', 'sophysa'] },
+                        { name: 'Midsize Lumen A (< 0.064″)', dia: 0.064, ok: ['licox', 'mdialysis', 'depth'] },
+                        { name: 'Midsize Lumen B (< 0.064″)', dia: 0.064, ok: ['licox', 'mdialysis', 'depth'] },
+                        { name: 'Short Lumen (< 0.047″)',   dia: 0.047, ok: ['qflow', 'camino', 'temp', 'codman', 'sophysa'] }
                     ]
                 }
             ];
+            var QUAD = BOLTS[2];
 
             function assign(bolt, picked) {
                 if (picked.length > bolt.lumens.length) return null;
@@ -1142,17 +1330,136 @@
             }
             selects[0].value = 'qflow';
 
-            /* ---------- Field placement state ---------- */
+            /* ---------- shared geometry ---------- */
+            var QUAD_SLOTS = {
+                'Long Lumen (< 0.078″)':      { td: { x: 110, y: 62 },  r: 12, angle: -20, lbl: { dx: -8, dy: 20,  anchor: 'end' } },
+                'Midsize Lumen A (< 0.064″)': { td: { x: 66, y: 118 },  r: 10, angle: -7,  lbl: { dx: -8, dy: -8,  anchor: 'end' } },
+                'Midsize Lumen B (< 0.064″)': { td: { x: 154, y: 118 }, r: 10, angle: 7,   lbl: { dx: 8,  dy: -8,  anchor: 'start' } },
+                'Short Lumen (< 0.047″)':     { td: { x: 110, y: 160 }, r: 8,  angle: 20,  lbl: { dx: 8,  dy: 20,  anchor: 'start' } }
+            };
+            function esc(t) { return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+
+            /* ---------- stepper + readout ---------- */
+            var stepEls = [1, 2, 3].map(function (i) { return document.getElementById('cfgx-step-' + i); });
+            function setSteps(a, b, c) {
+                var states = [a, b, c];
+                stepEls.forEach(function (el, i) { el.setAttribute('data-state', states[i]); });
+            }
+            var readout = document.getElementById('cfgx-readout');
+            function setReadout(picked, bolt) {
+                var lines = ['SENSORS SELECTED  ' + picked.length + ' / 4'];
+                lines.push(bolt ? 'BOLT MATCH        ' + bolt.id.toUpperCase() + ' LUMEN' : 'BOLT MATCH        —');
+                readout.textContent = lines.join('\n');
+            }
+
+            /* ---------- top-down map (shared by explorer + field view) ---------- */
+            function renderTopDown(plan, opts) {
+                opts = opts || {};
+                var interactive = !!opts.interactive;
+                var selected = opts.selected || null;
+                var svg = '<svg viewBox="0 0 220 220" role="img" aria-label="Top-down view of the quad lumen bolt showing the four lumen openings">';
+                svg += '<circle cx="110" cy="110" r="98" fill="#141d3d" stroke="#3d4f85" stroke-width="2"/>';
+                svg += '<circle cx="110" cy="110" r="86" fill="#0f1730" stroke="#2c3b6b" stroke-width="1.5"/>';
+                svg += '<circle cx="110" cy="110" r="86" fill="none" stroke="rgba(103,232,249,0.15)" stroke-width="1" stroke-dasharray="2 5"/>';
+                for (var a = 0; a < 6; a++) {
+                    var ang = (Math.PI / 3) * a + Math.PI / 6;
+                    svg += '<circle cx="' + (110 + 92 * Math.cos(ang)).toFixed(1) + '" cy="' + (110 + 92 * Math.sin(ang)).toFixed(1) + '" r="3" fill="#3d4f85"/>';
+                }
+                var i = 0;
+                for (var lumenName in QUAD_SLOTS) {
+                    var slot = QUAD_SLOTS[lumenName];
+                    var assigned = null;
+                    if (plan) plan.forEach(function (p) { if (p.lumen === lumenName) assigned = p.sensor; });
+                    var isSel = selected === lumenName;
+                    var open = interactive ? '<g class="cfgx-lumen-hotspot" role="button" tabindex="0" data-lumen="' + esc(lumenName) + '" aria-label="' + esc(lumenName) + '">' : '<g>';
+                    svg += open;
+                    if (isSel) svg += '<circle cx="' + slot.td.x + '" cy="' + slot.td.y + '" r="' + (slot.r + 8) + '" fill="none" stroke="#67e8f9" stroke-width="1.5" stroke-dasharray="4 3"/>';
+                    if (assigned) {
+                        var c = SENSORS[assigned].color;
+                        svg += '<circle cx="' + slot.td.x + '" cy="' + slot.td.y + '" r="' + (slot.r + 4) + '" fill="' + c + '" opacity="0.22"/>';
+                        svg += '<circle class="cfgx-hotspot-ring" cx="' + slot.td.x + '" cy="' + slot.td.y + '" r="' + slot.r + '" fill="' + c + '" stroke="#0b1126" stroke-width="2"/>';
+                    } else {
+                        svg += '<circle class="cfgx-hotspot-ring" cx="' + slot.td.x + '" cy="' + slot.td.y + '" r="' + slot.r + '" fill="#0b1126" stroke="#5a73c7" stroke-width="1.5" stroke-dasharray="3 3"/>';
+                    }
+                    svg += '</g>';
+                    i++;
+                }
+                svg += '</svg>';
+                return svg;
+            }
+
+            /* ---------- lumen explorer ---------- */
+            var explorerMap = document.getElementById('cfgx-lumen-map');
+            var explorerDetail = document.getElementById('cfgx-lumen-detail');
+            var explorerSelected = 'Long Lumen (< 0.078″)';
+            var lastPlanForBolt = null;
+
+            function renderExplorer() {
+                explorerMap.innerHTML = renderTopDown(lastPlanForBolt && lastPlanForBolt.boltId === 'quad' ? lastPlanForBolt.plan : null, { interactive: true, selected: explorerSelected });
+                explorerMap.querySelectorAll('.cfgx-lumen-hotspot').forEach(function (g) {
+                    function pick() { explorerSelected = g.getAttribute('data-lumen'); renderExplorer(); }
+                    g.addEventListener('click', pick);
+                    g.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } });
+                });
+                var lum = null;
+                QUAD.lumens.forEach(function (l) { if (l.name === explorerSelected) lum = l; });
+                if (!lum) { explorerDetail.innerHTML = '<p class="cfg-placeholder">Select a lumen on the map.</p>'; return; }
+                var assigned = null;
+                if (lastPlanForBolt && lastPlanForBolt.boltId === 'quad') {
+                    lastPlanForBolt.plan.forEach(function (p) { if (p.lumen === lum.name) assigned = p.sensor; });
+                }
+                var items = '';
+                lum.ok.forEach(function (id) {
+                    var sn = SENSORS[id];
+                    items += '<li><span class="cfg-assign-dot" style="background:' + sn.color + ';"></span>' + esc(sn.label) + (sn.star ? ' *' : '') +
+                        (assigned === id ? '<span class="cfgx-assigned-chip">Assigned</span>' : '') + '</li>';
+                });
+                explorerDetail.innerHTML =
+                    '<h4 class="cfgx-detail-title">' + esc(lum.name.replace(/ \(.*/, '')) + '</h4>' +
+                    '<p class="cfgx-detail-dim">MAX SENSOR DIAMETER: ' + lum.dia.toFixed(3) + '″ (' + (lum.dia * 25.4).toFixed(2) + ' mm)</p>' +
+                    '<p style="color:#a9b8dd;font-size:0.875rem;margin:0;">Sensors that fit this lumen:</p>' +
+                    '<ul class="cfgx-fit-list">' + items + '</ul>';
+            }
+
+            /* ---------- size comparison bars ---------- */
+            function renderBars() {
+                var wrap = document.getElementById('cfgx-bars');
+                var max = 0.089;
+                var rows = '';
+                QUAD.lumens.forEach(function (l) {
+                    rows += '<div class="cfgx-bar-row">' +
+                        '<span class="cfgx-bar-name">' + esc(l.name.replace(/ \(.*/, '')) + '</span>' +
+                        '<span class="cfgx-bar-track"><span class="cfgx-bar-fill" data-w="' + ((l.dia / max) * 100).toFixed(1) + '"></span></span>' +
+                        '<span class="cfgx-bar-val">' + l.dia.toFixed(3) + '″</span>' +
+                        '</div>';
+                });
+                wrap.innerHTML = rows;
+                function fill() {
+                    wrap.querySelectorAll('.cfgx-bar-fill').forEach(function (f) { f.style.width = f.getAttribute('data-w') + '%'; });
+                }
+                if ('IntersectionObserver' in window) {
+                    var io = new IntersectionObserver(function (entries) {
+                        if (entries.some(function (e) { return e.isIntersecting; })) { fill(); io.disconnect(); }
+                    }, { rootMargin: '0px 0px -10% 0px' });
+                    io.observe(wrap);
+                } else {
+                    fill();
+                }
+            }
+
+            /* ---------- field placement ---------- */
             var fieldPanel = document.getElementById('cfg-field');
             var fieldCta = document.getElementById('cfg-field-cta');
             var fieldBtn = document.getElementById('cfg-field-btn');
             var fieldProgress = document.getElementById('cfg-field-progress');
             var fieldOpen = false;
+            var lastQuadPlan = null;
 
             fieldBtn.addEventListener('click', function () {
                 fieldOpen = true;
                 fieldCta.hidden = true;
                 fieldPanel.hidden = false;
+                setSteps('done', 'done', 'active');
                 requestAnimationFrame(function () {
                     fieldPanel.classList.add('cfg-field-open');
                     renderField(lastQuadPlan);
@@ -1162,98 +1469,58 @@
                 });
             });
 
-            var lastQuadPlan = null;
-
-            /* Fixed slot geometry for the quad bolt, keyed by lumen name.
-               Top-down: position of each lumen hole. Side view: channel divergence angle (degrees from vertical). */
-            var QUAD_SLOTS = {
-                'Long Lumen (< 0.078″)':      { td: { x: 110, y: 62 },  r: 12, angle: -20, lbl: { dx: -8, dy: 20,  anchor: 'end' } },
-                'Midsize Lumen A (< 0.064″)': { td: { x: 66, y: 118 },  r: 10, angle: -7,  lbl: { dx: -8, dy: -8,  anchor: 'end' } },
-                'Midsize Lumen B (< 0.064″)': { td: { x: 154, y: 118 }, r: 10, angle: 7,   lbl: { dx: 8,  dy: -8,  anchor: 'start' } },
-                'Short Lumen (< 0.047″)':     { td: { x: 110, y: 160 }, r: 8,  angle: 20,  lbl: { dx: 8,  dy: 20,  anchor: 'start' } }
-            };
-
-            function esc(t) { return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
-
-            function renderTopDown(plan) {
-                var svg = '<svg viewBox="0 0 220 220" role="img" aria-label="Top-down view of the quad lumen bolt showing sensor-to-lumen assignments">';
-                svg += '<circle cx="110" cy="110" r="98" fill="#eef1f6" stroke="#c7ccd6" stroke-width="2"/>';
-                svg += '<circle cx="110" cy="110" r="86" fill="#f7f8fa" stroke="#d8dde5" stroke-width="1.5"/>';
-                /* hex-head hint */
-                for (var a = 0; a < 6; a++) {
-                    var ang = (Math.PI / 3) * a + Math.PI / 6;
-                    svg += '<circle cx="' + (110 + 92 * Math.cos(ang)).toFixed(1) + '" cy="' + (110 + 92 * Math.sin(ang)).toFixed(1) + '" r="3" fill="#c7ccd6"/>';
-                }
-                for (var lumenName in QUAD_SLOTS) {
-                    var slot = QUAD_SLOTS[lumenName];
-                    var assigned = null;
-                    if (plan) plan.forEach(function (p) { if (p.lumen === lumenName) assigned = p.sensor; });
-                    if (assigned) {
-                        var c = SENSORS[assigned].color;
-                        svg += '<circle cx="' + slot.td.x + '" cy="' + slot.td.y + '" r="' + (slot.r + 4) + '" fill="' + c + '" opacity="0.18"/>';
-                        svg += '<circle cx="' + slot.td.x + '" cy="' + slot.td.y + '" r="' + slot.r + '" fill="' + c + '" stroke="#fff" stroke-width="2"/>';
-                    } else {
-                        svg += '<circle cx="' + slot.td.x + '" cy="' + slot.td.y + '" r="' + slot.r + '" fill="#fff" stroke="#aeb6c2" stroke-width="1.5" stroke-dasharray="3 3"/>';
-                    }
-                }
-                svg += '</svg>';
-                return svg;
-            }
-
             function renderSide(plan) {
                 var W = 560, H = 430, cx = 280;
                 var duraY = 196, brainBottom = H - 10;
                 var svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Cross-section of the quad lumen bolt seated in the skull with sensors at representative depths">';
+                svg += '<rect x="0" y="0" width="' + W + '" height="' + H + '" fill="#0b1126"/>';
                 /* tissue layers */
-                svg += '<rect x="10" y="118" width="' + (W - 20) + '" height="42" fill="#f3e7d8" rx="4"/>';               /* scalp */
-                svg += '<rect x="10" y="160" width="' + (W - 20) + '" height="34" fill="#eceef2" rx="2"/>';               /* skull */
-                svg += '<rect x="10" y="' + duraY + '" width="' + (W - 20) + '" height="3.5" fill="#8d99ab"/>';          /* dura */
-                svg += '<rect x="10" y="' + (duraY + 3.5) + '" width="' + (W - 20) + '" height="' + (brainBottom - duraY - 3.5) + '" fill="#e7ecf6" rx="4"/>'; /* brain */
-                /* subtle gyri */
-                svg += '<path d="M 30 250 q 30 -18 60 0 t 60 0 t 60 0 t 60 0 t 60 0 t 60 0 t 60 0" fill="none" stroke="#ccd6e8" stroke-width="2"/>';
-                svg += '<path d="M 30 310 q 30 -16 60 0 t 60 0 t 60 0 t 60 0 t 60 0 t 60 0 t 60 0" fill="none" stroke="#d4dcec" stroke-width="2"/>';
-                /* layer labels */
-                svg += '<text x="18" y="143" font-size="11" fill="#8a7a63" font-family="inherit">Scalp</text>';
-                svg += '<text x="18" y="181" font-size="11" fill="#7b8494" font-family="inherit">Skull</text>';
-                svg += '<text x="18" y="216" font-size="11" fill="#5b708f" font-family="inherit">Brain</text>';
-                /* depth scale: 1 cm ≈ 40 px below dura */
+                svg += '<rect x="10" y="118" width="' + (W - 20) + '" height="42" fill="#2b2416" opacity="0.9" rx="4"/>';   /* scalp */
+                svg += '<rect x="10" y="160" width="' + (W - 20) + '" height="34" fill="#1d2542" rx="2"/>';                 /* skull */
+                svg += '<rect x="10" y="' + duraY + '" width="' + (W - 20) + '" height="3.5" fill="#5a73c7"/>';             /* dura */
+                svg += '<rect x="10" y="' + (duraY + 3.5) + '" width="' + (W - 20) + '" height="' + (brainBottom - duraY - 3.5) + '" fill="#131b3a" rx="4"/>';
+                svg += '<path d="M 30 250 q 30 -18 60 0 t 60 0 t 60 0 t 60 0 t 60 0 t 60 0 t 60 0" fill="none" stroke="#25315e" stroke-width="2"/>';
+                svg += '<path d="M 30 310 q 30 -16 60 0 t 60 0 t 60 0 t 60 0 t 60 0 t 60 0 t 60 0" fill="none" stroke="#202b54" stroke-width="2"/>';
+                svg += '<text x="18" y="143" font-size="11" fill="#c9b384" font-family="inherit">Scalp</text>';
+                svg += '<text x="18" y="181" font-size="11" fill="#93a5cf" font-family="inherit">Skull</text>';
+                svg += '<text x="18" y="216" font-size="11" fill="#8fd8f2" font-family="inherit">Brain</text>';
                 for (var d = 1; d <= 3; d++) {
                     var y = duraY + d * 40;
-                    svg += '<line x1="' + (W - 60) + '" y1="' + y + '" x2="' + (W - 14) + '" y2="' + y + '" stroke="#aeb6c2" stroke-width="1" stroke-dasharray="2 3"/>';
-                    svg += '<text x="' + (W - 56) + '" y="' + (y - 4) + '" font-size="10" fill="#7b8494" font-family="inherit">' + d + ' cm</text>';
+                    svg += '<line x1="' + (W - 60) + '" y1="' + y + '" x2="' + (W - 14) + '" y2="' + y + '" stroke="#3d4f85" stroke-width="1" stroke-dasharray="2 3"/>';
+                    svg += '<text x="' + (W - 56) + '" y="' + (y - 4) + '" font-size="10" fill="#93a5cf" font-family="inherit">' + d + ' cm</text>';
                 }
-                /* bolt: hex head, shaft with threads through skull */
-                svg += '<rect x="' + (cx - 44) + '" y="42" width="88" height="34" rx="5" fill="#c7ccd6" stroke="#a8afbc" stroke-width="1.5"/>';
-                svg += '<rect x="' + (cx - 30) + '" y="76" width="60" height="26" rx="4" fill="#d5d9e0" stroke="#a8afbc" stroke-width="1.5"/>';
-                svg += '<rect x="' + (cx - 20) + '" y="102" width="40" height="' + (duraY - 102) + '" fill="#d5d9e0" stroke="#a8afbc" stroke-width="1.5"/>';
+                /* bolt */
+                svg += '<rect x="' + (cx - 44) + '" y="42" width="88" height="34" rx="5" fill="#3a4a7d" stroke="#5a73c7" stroke-width="1.5"/>';
+                svg += '<rect x="' + (cx - 30) + '" y="76" width="60" height="26" rx="4" fill="#31406e" stroke="#5a73c7" stroke-width="1.5"/>';
+                svg += '<rect x="' + (cx - 20) + '" y="102" width="40" height="' + (duraY - 102) + '" fill="#31406e" stroke="#5a73c7" stroke-width="1.5"/>';
                 for (var t = 0; t < 4; t++) {
                     var ty = 166 + t * 8;
-                    svg += '<line x1="' + (cx - 20) + '" y1="' + ty + '" x2="' + (cx + 20) + '" y2="' + ty + '" stroke="#a8afbc" stroke-width="1.5"/>';
+                    svg += '<line x1="' + (cx - 20) + '" y1="' + ty + '" x2="' + (cx + 20) + '" y2="' + ty + '" stroke="#5a73c7" stroke-width="1.5"/>';
                 }
-                svg += '<text x="' + (cx + 54) + '" y="64" font-size="11" fill="#64748b" font-family="inherit">Quad Lumen Bolt</text>';
-                /* probes */
-                var probes = '';
-                var labels = '';
+                svg += '<text x="' + (cx + 54) + '" y="64" font-size="11" fill="#93a5cf" font-family="inherit">Quad Lumen Bolt</text>';
+                var probes = '', labels = '';
                 if (plan) {
                     plan.forEach(function (p) {
                         var slot = QUAD_SLOTS[p.lumen];
                         if (!slot) return;
                         var sn = SENSORS[p.sensor];
                         var rad = slot.angle * Math.PI / 180;
-                        var x0 = cx + slot.angle * 0.55, y0 = 36;                        /* entry above bolt head */
-                        var x1 = cx + slot.angle * 0.55, y1 = duraY;                      /* straight through shaft */
-                        var x2 = x1 + Math.sin(rad) * sn.depth, y2 = duraY + Math.cos(rad) * sn.depth; /* diverge in brain */
+                        var x0 = cx + slot.angle * 0.55, y0 = 36;
+                        var x1 = cx + slot.angle * 0.55, y1 = duraY;
+                        var x2 = x1 + Math.sin(rad) * sn.depth, y2 = duraY + Math.cos(rad) * sn.depth;
                         var lenA = y1 - y0, lenB = Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
                         var total = (lenA + lenB).toFixed(1);
-                        probes += '<path class="cfg-probe-line" data-len="' + total + '" d="M ' + x0 + ' ' + y0 + ' L ' + x1 + ' ' + y1 + ' L ' + x2.toFixed(1) + ' ' + y2.toFixed(1) + '" fill="none" stroke="' + sn.color + '" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="' + total + '" stroke-dashoffset="' + total + '"/>';
+                        probes += '<path class="cfg-probe-line" d="M ' + x0 + ' ' + y0 + ' L ' + x1 + ' ' + y1 + ' L ' + x2.toFixed(1) + ' ' + y2.toFixed(1) + '" fill="none" stroke="' + sn.color + '" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="' + total + '" stroke-dashoffset="' + total + '"/>';
                         probes += '<circle class="cfg-probe-tip" cx="' + x2.toFixed(1) + '" cy="' + y2.toFixed(1) + '" r="4.5" fill="' + sn.color + '" opacity="0"/>';
                         if (p.sensor === 'qflow') {
-                            probes += '<circle class="cfg-probe-tip" cx="' + (x2 - Math.sin(rad) * 14).toFixed(1) + '" cy="' + (y2 - Math.cos(rad) * 14).toFixed(1) + '" r="3" fill="#fff" stroke="' + sn.color + '" stroke-width="1.5" opacity="0"/>';
+                            probes += '<circle class="cfg-probe-tip" cx="' + (x2 - Math.sin(rad) * 14).toFixed(1) + '" cy="' + (y2 - Math.cos(rad) * 14).toFixed(1) + '" r="3" fill="#0b1126" stroke="' + sn.color + '" stroke-width="1.5" opacity="0"/>';
                         }
                         labels += '<text class="cfg-probe-tip" x="' + (x2 + slot.lbl.dx).toFixed(1) + '" y="' + (y2 + slot.lbl.dy).toFixed(1) + '" font-size="10.5" font-weight="600" fill="' + sn.color + '" text-anchor="' + slot.lbl.anchor + '" font-family="inherit" opacity="0">' + esc(sn.short) + '</text>';
                     });
                 }
-                svg += probes + labels + '</svg>';
+                svg += probes + labels;
+                svg += '<rect class="cfgx-scanline" x="0" y="0" width="' + W + '" height="3" fill="rgba(103,232,249,0.5)"/>';
+                svg += '</svg>';
                 return svg;
             }
 
@@ -1261,7 +1528,7 @@
                 var td = document.getElementById('cfg-topdown');
                 var side = document.getElementById('cfg-side');
                 var legend = document.getElementById('cfg-legend');
-                td.innerHTML = renderTopDown(plan);
+                td.innerHTML = renderTopDown(plan, {});
                 side.innerHTML = renderSide(plan);
                 var lg = '';
                 if (plan) {
@@ -1271,7 +1538,6 @@
                     });
                 }
                 legend.innerHTML = lg;
-                /* animate probe insertion */
                 requestAnimationFrame(function () {
                     requestAnimationFrame(function () {
                         side.querySelectorAll('.cfg-probe-line').forEach(function (ln) { ln.style.strokeDashoffset = '0'; });
@@ -1292,7 +1558,8 @@
                 var picked = selects.map(function (e) { return e.value; }).filter(Boolean);
                 if (!picked.length) {
                     box.innerHTML = '<p class="cfg-placeholder">Select one or more sensors to see a recommended configuration.</p>';
-                    lastQuadPlan = null; closeField(); fieldProgress.textContent = '';
+                    lastQuadPlan = null; lastPlanForBolt = null; closeField(); fieldProgress.textContent = '';
+                    setSteps('active', 'idle', 'idle'); setReadout(picked, null); renderExplorer();
                     return;
                 }
                 var bolt = null, plan = null;
@@ -1303,9 +1570,11 @@
                 if (!bolt) {
                     box.innerHTML = '<div class="cfg-warn">No published single-bolt configuration covers this sensor combination. ' +
                         'Consider splitting sensors across two bolts, or <a href="contact.html">contact Hemedex</a> to discuss options.</div>';
-                    lastQuadPlan = null; closeField(); fieldProgress.textContent = '';
+                    lastQuadPlan = null; lastPlanForBolt = null; closeField(); fieldProgress.textContent = '';
+                    setSteps('active', 'idle', 'idle'); setReadout(picked, null); renderExplorer();
                     return;
                 }
+                lastPlanForBolt = { boltId: bolt.id, plan: plan };
                 var rows = '';
                 var anyStar = false;
                 plan.forEach(function (a) {
@@ -1315,7 +1584,7 @@
                 });
                 bolt.lumens.forEach(function (l) {
                     if (!plan.some(function (a) { return a.lumen === l.name; })) {
-                        rows += '<tr><td>' + l.name + '</td><td style="color:var(--text-muted);">— available —</td></tr>';
+                        rows += '<tr><td>' + l.name + '</td><td style="color:#93a5cf;">— available —</td></tr>';
                     }
                 });
                 box.innerHTML =
@@ -1331,19 +1600,24 @@
                     '<div class="cfg-video"><span class="cfg-bolt-label">Watch the insertion video</span><br>' +
                     '<iframe src="https://www.youtube-nocookie.com/embed/TwCKmaRNYXA?rel=0&amp;modestbranding=1" title="QFlow 500 probe placement video" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>';
 
-                /* field placement gating: quad bolt + all four sensors selected */
+                setReadout(picked, bolt);
+                renderExplorer();
+
                 var quadReady = (bolt.id === 'quad' && picked.length === 4);
                 if (quadReady) {
                     lastQuadPlan = plan;
                     fieldProgress.textContent = '';
                     if (fieldOpen) {
+                        setSteps('done', 'done', 'active');
                         renderField(plan);
                     } else {
+                        setSteps('done', 'active', 'idle');
                         fieldCta.hidden = false;
                     }
                 } else {
                     lastQuadPlan = null;
                     closeField();
+                    setSteps('active', picked.length ? 'active' : 'idle', 'idle');
                     if (picked.length < 4) {
                         fieldProgress.textContent = 'Select ' + (4 - picked.length) + ' more sensor' + (4 - picked.length === 1 ? '' : 's') + ' to unlock the quad bolt field placement preview.';
                     } else {
@@ -1351,6 +1625,8 @@
                     }
                 }
             }
+
+            renderBars();
             update();
         })();
         </script>
