@@ -198,10 +198,10 @@
                             method="POST">
 
                             <!-- Web3Forms config -->
-                            <input type="hidden" name="access_key" value="b1dfcfd6-d6ff-4399-8fbd-3a056634d2b3">
+                            <input type="hidden" name="access_key" value="cbf133bb-ae7a-43d9-800a-44dd15b7a136">
                             <input type="hidden" name="subject" value="New Hemedex Website Inquiry">
                             <input type="hidden" name="from_name" value="Hemedex Website">
-                            <input type="hidden" name="redirect" value="contact.html?sent=true">
+                            <input type="hidden" name="redirect" value="https://hemedex.com/contact.html?sent=true">
                             <!-- Honeypot — hidden from humans, traps bots -->
                             <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off">
 
@@ -268,8 +268,9 @@
                                 <textarea id="message" name="message" rows="6" required placeholder="Tell us how we can help…"></textarea>
                             </div>
 
-                            <!-- hCaptcha widget 
-                            <div class="h-captcha" data-captcha="true" style="margin-bottom: 1.25rem;"></div> -->
+                            <!-- hCaptcha widget — rendered by the Web3Forms client script.
+                                 Requires Settings → Captcha → Enable in the Web3Forms dashboard. -->
+                            <div class="h-captcha" data-captcha="true" style="margin-bottom: 1.25rem;"></div>
 
                             <button type="submit" class="btn btn-primary btn-large btn-full-width">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
@@ -412,7 +413,7 @@
     </footer>
 
     <script src="main.js"></script>
-   <!--- <script src="https://web3forms.com/client/script.js" async defer></script> -->
+    <script src="https://web3forms.com/client/script.js" async defer></script>
     <script>
         // Show success toast if redirected back after Web3Forms submission
         if (window.location.search.includes('sent=true')) {

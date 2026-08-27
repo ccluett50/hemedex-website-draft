@@ -645,6 +645,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 btn.style.opacity = '';
 
                 const msg = document.createElement('div');
+                msg.setAttribute('role', 'status');
+                msg.setAttribute('aria-live', 'polite');
 
                 if (data.success) {
                     msg.style.cssText = `
@@ -666,7 +668,16 @@ document.addEventListener('DOMContentLoaded', function () {
                         box-shadow: 0 4px 20px rgba(220,38,38,0.25);
                         transition: opacity 0.4s ease;
                     `;
-                    msg.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg> Something went wrong. Please try again or call us directly.`;
+                    // Surface the API's own reason — with hCaptcha on, the usual
+                    // failure is an unsolved captcha, and the generic copy sent
+                    // people to the phone instead of back to the widget.
+                    // Appended as text, never HTML: this string comes off the wire.
+                    msg.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg> `;
+                    msg.appendChild(document.createTextNode(
+                        (data && typeof data.message === 'string' && data.message)
+                            ? data.message
+                            : 'Something went wrong. Please try again or call us directly.'
+                    ));
                 }
 
                 contactForm.appendChild(msg);
@@ -683,6 +694,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 btn.style.opacity = '';
 
                 const msg = document.createElement('div');
+                msg.setAttribute('role', 'status');
+                msg.setAttribute('aria-live', 'polite');
                 msg.style.cssText = `
                     background: linear-gradient(135deg, #dc2626, #b91c1c);
                     color: white; padding: 1.25rem 1.75rem; border-radius: 12px;
