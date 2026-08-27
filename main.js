@@ -856,8 +856,6 @@ document.addEventListener('visibilitychange', () => {
 // ========================================
 // CONSOLE TAG
 // ========================================
-console.log('%c🩺 Hemedex', 'font-size:18px;font-weight:700;color:#3852b3;');
-console.log('%cKnow The Flow™', 'font-size:12px;color:#4c5166;');
 
 
 // ========================================

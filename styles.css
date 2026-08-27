@@ -30,7 +30,7 @@
     --text-heading:  #0f172a;
     --text-body:     #334155;
     --text-muted:    #64748b;
-    --text-light:    #94a3b8;
+    --text-light:    #5f6f86;
 
     /* Feedback */
     --success: #059669;
@@ -162,6 +162,10 @@ input, select, textarea { font-family: inherit; }
     flex-direction: column;
     gap: 5px;
     padding: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
     border-radius: var(--r-sm);
     transition: background var(--t-fast);
 }

@@ -1,0 +1,167 @@
+# =============================================================================
+#  Hemedex — static site .htaccess  (Apache / Bluehost)
+#  Generated 2026-08-26
+#
+#  READ BEFORE UPLOADING
+#  ---------------------
+#  This file REPLACES the WordPress .htaccess. Save a copy of the existing one
+#  first. If any part of the WordPress install is staying live — in particular
+#  /private-myhemedex-portal/, which is a password-protected WP page with no
+#  static equivalent — do NOT drop the WP rewrite block; merge instead, and
+#  delete the /private-myhemedex-portal/ line in section 2 below.
+# =============================================================================
+
+
+# -----------------------------------------------------------------------------
+# 1. Basics
+# -----------------------------------------------------------------------------
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Canonical host + HTTPS. Uncomment once DNS and the certificate are confirmed.
+  # RewriteCond %{HTTPS} !=on
+  # RewriteRule ^(.*)$ https://hemedex.com/$1 [R=301,L]
+  # RewriteCond %{HTTP_HOST} ^www\.hemedex\.com$ [NC]
+  # RewriteRule ^(.*)$ https://hemedex.com/$1 [R=301,L]
+</IfModule>
+
+
+# -----------------------------------------------------------------------------
+# 2. 301 redirects: old WordPress permalinks -> new static pages
+#
+#    RedirectMatch with anchored ^...$ patterns is used deliberately: a plain
+#    `Redirect /products/` would also swallow /products/quad-lumen-bolt-kit/.
+#    Trailing slash is optional in every rule so both forms resolve.
+# -----------------------------------------------------------------------------
+<IfModule mod_alias.c>
+
+  # --- Top-level pages ---
+  RedirectMatch 301 "^/products/?$"                                  "/products.html"
+  RedirectMatch 301 "^/clinical/?$"                                  "/clinical.html"
+  RedirectMatch 301 "^/about-us/?$"                                  "/about.html"
+  RedirectMatch 301 "^/contact/?$"                                   "/contact.html"
+
+  # --- Publications (five old URLs collapse into one page) ---
+  RedirectMatch 301 "^/literature/?$"                                "/publications.html"
+  RedirectMatch 301 "^/new-literature-page/?$"                       "/publications.html"
+  RedirectMatch 301 "^/selected-literature/?$"                       "/publications.html"
+  RedirectMatch 301 "^/neuro-literature/?$"                          "/publications.html"
+  RedirectMatch 301 "^/neurosurgery-literature/?$"                   "/publications.html"
+
+  # --- Products: deep-link into the matching section ---
+  RedirectMatch 301 "^/bowman-perfusion-monitor/?$"                  "/products.html#bowman-monitor"
+  RedirectMatch 301 "^/products/bowman-perfusion-monitoring-system/?$" "/products.html#bowman-monitor"
+  RedirectMatch 301 "^/qflow-500-perfusion-probe/?$"                 "/products.html#qflow-probe"
+  RedirectMatch 301 "^/products/qflow-500-perfusion-probe/?$"        "/products.html#qflow-probe"
+  RedirectMatch 301 "^/quad-lumen-bolt-kit/?$"                       "/products.html#quad-bolt"
+  RedirectMatch 301 "^/products/quad-lumen-bolt-kit/?$"              "/products.html#quad-bolt"
+  RedirectMatch 301 "^/dual-lumen-bolt-kit/?$"                       "/products.html#dual-bolt"
+  RedirectMatch 301 "^/products/dual-lumen-bolt-kit/?$"              "/products.html#dual-bolt"
+  RedirectMatch 301 "^/single-lumen-bolt-kit/?$"                     "/products.html#single-bolt"
+  RedirectMatch 301 "^/products/single-lumen-bolt-kit/?$"            "/products.html#single-bolt"
+  RedirectMatch 301 "^/products/qflow-500-titanium-bolts/?$"         "/products.html#quad-bolt"
+
+  # The Dura Piercer has no section of its own yet. It is described inside the
+  # QFlow 500 probe section, so that is the closest honest destination.
+  RedirectMatch 301 "^/products/qflow-500-perfusion-probe/dura-piercer/?$" "/products.html#qflow-probe"
+
+  # --- Clinical: deep-link into the matching section ---
+  RedirectMatch 301 "^/why-perfusion/?$"                             "/clinical.html#why-perfusion"
+  RedirectMatch 301 "^/applications-benefits/?$"                     "/clinical.html#applications"
+  RedirectMatch 301 "^/validation/?$"                                "/clinical.html#validation"
+  RedirectMatch 301 "^/theory-of-operation/?$"                       "/clinical.html#theory"
+  RedirectMatch 301 "^/how-to-use-the-monitor/?$"                    "/clinical.html#how-to-use"
+  RedirectMatch 301 "^/multimodal-monitoring/?$"                     "/clinical.html#multimodal"
+
+  # --- Contact / sales / support ---
+  RedirectMatch 301 "^/sales-team/?$"                                "/contact.html"
+  RedirectMatch 301 "^/login/?$"                                     "/contact.html"
+  RedirectMatch 301 "^/independent-sales-representatives/?$"         "/contact.html"
+
+  # --- About ---
+  RedirectMatch 301 "^/multimodal-partners/?$"                       "/about.html"
+
+  # --- Events ---
+  RedirectMatch 301 "^/upcoming-events/?$"                           "/index.html#events"
+
+  # --- Pages with no static equivalent yet -------------------------------------
+  # These land on the nearest relevant page so nothing 404s, but each one is a
+  # content gap that should be filled or deliberately retired. Revisit these.
+  RedirectMatch 301 "^/support/?$"                                   "/contact.html"
+  RedirectMatch 301 "^/troubleshooting/?$"                           "/contact.html"
+  RedirectMatch 301 "^/qlb-tutorial-videos/?$"                       "/products.html"
+  RedirectMatch 301 "^/methodology/?$"                               "/publications.html"
+  RedirectMatch 301 "^/organ-transplantation-reconstructive/?$"      "/publications.html#transplantation"
+
+  # --- WordPress cruft: taxonomy, author and slider archives ---
+  RedirectMatch 301 "^/category/.*$"                                 "/index.html"
+  RedirectMatch 301 "^/author/.*$"                                   "/index.html"
+  RedirectMatch 301 "^/slide-page/.*$"                               "/index.html"
+  RedirectMatch 301 "^/themefusion_es_groups/.*$"                    "/index.html"
+  RedirectMatch 301 "^/1699/?$"                                      "/index.html"
+
+  # WordPress endpoints that no longer exist on a static site.
+  RedirectMatch 410 "^/(wp-json|xmlrpc\.php|wp-login\.php)(/.*)?$"
+
+</IfModule>
+
+
+# -----------------------------------------------------------------------------
+# 3. Compression
+# -----------------------------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
+  AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+  AddOutputFilterByType DEFLATE application/json application/xml
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+
+# -----------------------------------------------------------------------------
+# 4. Caching
+#    HTML stays short so content edits go live promptly; static assets are
+#    cached hard. If you change an image or stylesheet, rename it or append a
+#    ?v=2 query string so browsers pick the new one up.
+# -----------------------------------------------------------------------------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html                     "access plus 1 hour"
+  ExpiresByType text/css                      "access plus 1 year"
+  ExpiresByType application/javascript        "access plus 1 year"
+  ExpiresByType image/jpeg                    "access plus 1 year"
+  ExpiresByType image/png                     "access plus 1 year"
+  ExpiresByType image/gif                     "access plus 1 year"
+  ExpiresByType image/webp                    "access plus 1 year"
+  ExpiresByType image/svg+xml                 "access plus 1 year"
+  ExpiresByType image/x-icon                  "access plus 1 year"
+  ExpiresByType application/pdf               "access plus 1 month"
+  ExpiresByType font/woff2                    "access plus 1 year"
+</IfModule>
+
+
+# -----------------------------------------------------------------------------
+# 5. Security headers
+# -----------------------------------------------------------------------------
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+  # Enable once HTTPS is confirmed working on every hostname:
+  # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+
+
+# -----------------------------------------------------------------------------
+# 6. Keep working files out of the public site
+# -----------------------------------------------------------------------------
+<FilesMatch "\.(md|bak|log|orig|sh)$|^\.">
+  Require all denied
+</FilesMatch>
+<FilesMatch "\.bak-[0-9]+$">
+  Require all denied
+</FilesMatch>
