@@ -2967,3 +2967,93 @@ details[open] .bio-toggle::after { transform: rotate(180deg); }
 #global-reach {
     scroll-margin-top: 90px;
 }
+
+/* ========================================
+   "IN DEVELOPMENT" PLACEHOLDER GRAPHIC
+   Stands in for product photography that
+   does not exist yet (HMVS, etc.).
+   ======================================== */
+.dev-graphic {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.125rem;
+    padding: 2.75rem 1.5rem;
+    text-align: center;
+    border: 1.5px dashed rgba(56,82,179,0.28);
+    border-radius: var(--r-xl);
+    background:
+        radial-gradient(ellipse at 50% 34%, rgba(56,82,179,0.10), transparent 70%),
+        repeating-linear-gradient(0deg,  rgba(56,82,179,0.05) 0 1px, transparent 1px 22px),
+        repeating-linear-gradient(90deg, rgba(56,82,179,0.05) 0 1px, transparent 1px 22px),
+        var(--bg-off);
+}
+.dev-graphic-icon {
+    width: 104px;
+    height: 104px;
+    color: var(--primary);
+    flex-shrink: 0;
+}
+.dev-graphic-icon .dev-frame  { opacity: 0.85; }
+.dev-graphic-icon .dev-screen { opacity: 0.25; }
+.dev-graphic-icon .dev-trace-base { opacity: 0.22; }
+.dev-graphic-icon .dev-trace {
+    stroke-dasharray: 6 4;
+    animation: devTraceFlow 1.8s linear infinite;
+}
+.dev-graphic-icon .dev-pulse {
+    transform-origin: center;
+    animation: devPulse 1.8s var(--ease-out) infinite;
+}
+@keyframes devTraceFlow { to { stroke-dashoffset: -20; } }
+@keyframes devPulse {
+    0%, 100% { opacity: 0.25; }
+    50%      { opacity: 1; }
+}
+.dev-graphic-label {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--primary);
+}
+.dev-graphic-note {
+    margin: 0.4rem 0 0;
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+}
+
+/* Compact variant - fills the fixed-height image area of a product card */
+.dev-graphic-sm {
+    height: 100%;
+    gap: 0.75rem;
+    padding: 1.5rem 1rem;
+    border: none;
+    border-radius: 0;
+}
+.dev-graphic-sm .dev-graphic-icon { width: 68px; height: 68px; }
+.dev-graphic-sm .dev-graphic-label { font-size: 0.6875rem; letter-spacing: 0.12em; }
+.dev-graphic-sm .dev-graphic-note  { font-size: 0.75rem; margin-top: 0.25rem; }
+
+/* Let the graphic run edge-to-edge inside a product detail image panel */
+.product-detail-image.is-placeholder {
+    padding: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+.product-detail-image.is-placeholder .dev-graphic { min-height: 320px; }
+.showcase-image .dev-graphic { min-height: 280px; max-width: 420px; }
+
+@media (prefers-reduced-motion: reduce) {
+    .dev-graphic-icon .dev-trace-base { opacity: 0.22; }
+.dev-graphic-icon .dev-trace {
+        stroke-dasharray: none;
+        animation: none;
+    }
+    .dev-graphic-icon .dev-pulse { animation: none; opacity: 1; }
+}
