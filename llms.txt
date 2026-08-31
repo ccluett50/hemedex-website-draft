@@ -8,7 +8,7 @@ Hemedex, Inc. — founded 2000, Waltham, Massachusetts, USA. Core technology: Th
 - [Home](https://hemedex.com/index.html): Company overview and the "Know The Flow" value proposition.
 - [Products](https://hemedex.com/products.html): Bowman Perfusion Monitor, QFlow 500 Perfusion Probe, and Quad/Dual/Single Lumen Bolt Kits — with specifications and FAQs.
 - [Clinical](https://hemedex.com/clinical.html): Why perfusion matters, applications & benefits, validation & regulatory status, theory of operation, and multimodal monitoring.
-- [Publications](https://hemedex.com/publications.html): 91 peer-reviewed publications on cerebral perfusion monitoring, TDF, TBI, SAH, and multimodal neuromonitoring — searchable and filterable by keyword.
+- [Publications](https://hemedex.com/publications.html): 110 peer-reviewed publications on cerebral perfusion monitoring, TDF, TBI, SAH, and multimodal neuromonitoring — searchable and filterable by keyword.
 - [About](https://hemedex.com/about.html): Company history, team, mission, and partner institutions.
 - [Contact](https://hemedex.com/contact.html): Sales, technical support, and office location.
 
