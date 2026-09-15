@@ -2055,6 +2055,7 @@ input, select, textarea { font-family: inherit; }
     object-position: 50% 30%;
 }
 .member-photo img { transition: transform var(--t-slow); }
+.member-photo[data-bio] { cursor: pointer; }
 .team-member:hover .member-photo img { transform: scale(1.03); }
 
 /* Initials avatar for anyone without a photo yet */

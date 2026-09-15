@@ -31,13 +31,15 @@ def title_html(title):
     return escape(title).replace("/", "/<wbr>")
 
 
-def photo_html(m, cls, lazy=True):
+def photo_html(m, cls, lazy=True, bio_trigger=False):
     name = escape(display_name(m))
+    # Clicking a card photo opens the bio too (pointer shortcut; the Read bio button is the keyboard path).
+    data = f' data-bio="{m["slug"]}"' if bio_trigger and m.get("bio") else ""
     if not m.get("photo"):
-        return f'<div class="{cls} is-initials" role="img" aria-label="{name}"><span aria-hidden="true">{initials(m)}</span></div>'
+        return f'<div class="{cls} is-initials"{data} role="img" aria-label="{name}"><span aria-hidden="true">{initials(m)}</span></div>'
     loading = ' loading="lazy"' if lazy else ""
     return (
-        f'<div class="{cls}"><img src="{escape(m["photo"])}" alt="{name}" width="480" height="600"'
+        f'<div class="{cls}"{data}><img src="{escape(m["photo"])}" alt="{name}" width="480" height="600"'
         f'{loading} decoding="async" style="object-position: {escape(m.get("focal") or "50% 30%")}"></div>'
     )
 
@@ -65,7 +67,7 @@ def card(m, i):
     actions = f'\n{i}        <div class="member-actions">{button}{link}</div>' if (button or link) else ""
     return (
         f'{i}<article class="team-member" id="{slug}">\n'
-        f'{i}    {photo_html(m, "member-photo")}\n'
+        f'{i}    {photo_html(m, "member-photo", bio_trigger=True)}\n'
         f'{i}    <div class="member-body">\n'
         f'{i}        <h3 class="member-name">{name}</h3>\n'
         f'{i}        <p class="member-title">{title_html(m["title"])}</p>'

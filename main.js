@@ -849,6 +849,10 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('.member-bio-btn').forEach(btn => {
             btn.addEventListener('click', () => openBio(btn.dataset.bio, btn));
         });
+        // Clicking a card photo opens the same bio; focus returns to that card's Read bio button.
+        document.querySelectorAll('.member-photo[data-bio]').forEach(photo => {
+            photo.addEventListener('click', () => openBio(photo.dataset.bio));
+        });
 
         dialogs.forEach(dialog => {
             dialog.querySelector('.bio-dialog-close').addEventListener('click', () => closeBio(dialog));
