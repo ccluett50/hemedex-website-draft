@@ -165,3 +165,10 @@ Options -Indexes
 <FilesMatch "\.bak-[0-9]+$">
   Require all denied
 </FilesMatch>
+<FilesMatch "\.py$">
+  Require all denied
+</FilesMatch>
+# Build-only folders (e.g. _team/, the team page data + generator) are not part of the site.
+<IfModule mod_alias.c>
+  RedirectMatch 404 ^/_[^/]+/
+</IfModule>
