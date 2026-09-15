@@ -796,6 +796,83 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     // ========================================
+    // TEAM BIO DIALOGS (about.html)
+    // Each bio is pre-rendered in a closed <dialog id="bio-{slug}">.
+    // about.html#{slug} opens that bio on load; opening/closing
+    // updates the hash with replaceState (no history entries).
+    // ========================================
+    (function () {
+        const dialogs = document.querySelectorAll('.bio-dialog');
+        if (!dialogs.length || typeof HTMLDialogElement !== 'function') return;
+
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        let returnFocusTo = null;
+
+        function setHash(slug) {
+            const url = window.location.pathname + window.location.search + (slug ? '#' + slug : '');
+            history.replaceState(history.state, '', url);
+        }
+
+        function openBio(slug, trigger) {
+            const dialog = document.getElementById('bio-' + slug);
+            if (!dialog || dialog.open) return;
+            document.querySelectorAll('.bio-dialog[open]').forEach(d => finishClose(d, false));
+            returnFocusTo = trigger || document.querySelector('.member-bio-btn[data-bio="' + slug + '"]');
+            dialog.classList.remove('is-closing');
+            dialog.showModal();
+            document.body.classList.add('bio-dialog-open');
+            const content = dialog.querySelector('.bio-dialog-content');
+            if (content) content.scrollTop = 0;
+            dialog.scrollTop = 0;
+            setHash(slug);
+        }
+
+        function finishClose(dialog, restoreFocus) {
+            dialog.classList.remove('is-closing');
+            if (dialog.open) dialog.close();
+            document.body.classList.remove('bio-dialog-open');
+            if (restoreFocus && returnFocusTo) returnFocusTo.focus({ preventScroll: true });
+            returnFocusTo = null;
+        }
+
+        function closeBio(dialog) {
+            if (!dialog.open || dialog.classList.contains('is-closing')) return;
+            setHash('');
+            if (reduceMotion.matches) { finishClose(dialog, true); return; }
+            dialog.classList.add('is-closing');
+            let done = false;
+            const end = () => { if (!done) { done = true; finishClose(dialog, true); } };
+            dialog.addEventListener('animationend', end, { once: true });
+            setTimeout(end, 250); // fallback if animationend never fires
+        }
+
+        document.querySelectorAll('.member-bio-btn').forEach(btn => {
+            btn.addEventListener('click', () => openBio(btn.dataset.bio, btn));
+        });
+
+        dialogs.forEach(dialog => {
+            dialog.querySelector('.bio-dialog-close').addEventListener('click', () => closeBio(dialog));
+            // Esc: run the animated close instead of the instant native one
+            dialog.addEventListener('cancel', e => { e.preventDefault(); closeBio(dialog); });
+            // Backdrop click: the click lands on the <dialog> itself, outside its box
+            dialog.addEventListener('click', e => {
+                if (e.target !== dialog) return;
+                const r = dialog.getBoundingClientRect();
+                const inside = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
+                if (!inside) closeBio(dialog);
+            });
+        });
+
+        function openFromHash() {
+            const slug = decodeURIComponent(window.location.hash.slice(1));
+            if (slug && document.getElementById('bio-' + slug)) openBio(slug);
+        }
+        window.addEventListener('hashchange', openFromHash);
+        openFromHash();
+    })();
+
+
+    // ========================================
     // PARALLAX (hero & CTA backgrounds)
     // ========================================
     const heroBg = document.querySelector('.hero-bg-img');
