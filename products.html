@@ -545,7 +545,15 @@
                             <p class="product-inline-caption">Probe and umbilical cord connection</p>
                         </div>
                         <div>
-                            <iframe width="400" height="225" src="https://www.youtube.com/embed/TwCKmaRNYXA?si=asSCNplgr-TAyyea" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <!-- YouTube lite embed — loads thumbnail instantly, iframe only on click -->
+                            <div class="yt-facade" data-videoid="TwCKmaRNYXA" role="button" tabindex="0"
+                                 aria-label="Play: QFlow 500 Perfusion Probe placement video">
+                                <img src="https://i.ytimg.com/vi/TwCKmaRNYXA/hqdefault.jpg"
+                                     alt="QFlow 500 probe placement video thumbnail" loading="lazy">
+                                <div class="yt-play-btn" aria-hidden="true">
+                                    <svg viewBox="0 0 68 48" width="52" height="36"><path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="#f00"/><path d="M45 24L27 14v20" fill="#fff"/></svg>
+                                </div>
+                            </div>
                             <p class="product-inline-caption">Probe placement video</p>
                         </div>
                     </div>
