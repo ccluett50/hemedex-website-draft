@@ -46,9 +46,8 @@
       "name": "Deanna Bowman",
       "credentials": null,
       "title": "Senior Director of Manufacturing",
-      "photo": null,
-      "todo": "TODO: new photo expected (not yet received). Showing initials avatar until then.",
-      "focal": "50% 30%",
+      "photo": "images/team/blue-updated/deanna-bowman.webp",
+      "focal": "50% 50%",
       "linkedin": null,
       "bio": [
         "Deanna Bowman brings more than three decades of experience in precision manufacturing, research and development, product fabrication, and production leadership across medical technology, electronics, and defense-related applications. Earlier in her career, Deanna served as a Production Manager at Raytheon, where she supervised manufacturing personnel responsible for producing subassemblies used in the Sparrow missile guidance system and held clearance to support federal government contracts.",
@@ -83,15 +82,32 @@
       ]
     },
     {
-      "slug": "wendy-derienzo",
-      "name": "Wendy DeRienzo",
+      "slug": "wendi-derienzo",
+      "name": "Wendi DeRienzo",
       "credentials": null,
       "title": "Administrative Services Manager",
-      "photo": null,
-      "todo": "TODO: photo still coming; bio not provided yet; confirm spelling (emails use both Wendy and Wendi).",
-      "focal": "50% 30%",
+      "photo": "images/team/blue-updated/wendi-derienzo.webp",
+      "focal": "50% 50%",
       "linkedin": null,
-      "bio": []
+      "bio": [
+        "Wendi DeRienzo joined Hemedex in November 2021 as Office Manager and now serves as Administrative Services Manager. She supports the company’s day-to-day operations, including accounts payable and receivable, human resources administration, and executive scheduling.",
+        "Wendi brings extensive experience in administrative operations and healthcare support. Before joining Hemedex, she spent nine years at Quality Insulation, advancing from Receptionist to Operations Specialist and Human Resources Administrator. Earlier in her career, she worked in medical administration as a patient advocate and scheduler for Shields Health Care Group and as a Medical Secretary supporting an obstetrics and gynecology practice.",
+        "Wendi also operated a daycare for more than 15 years while raising her family, an experience that further developed her organizational skills and commitment to helping others."
+      ]
+    },
+    {
+      "slug": "michael-tymm",
+      "name": "Michael Tymm",
+      "credentials": null,
+      "title": "Senior Technical Advisor, Systems and Software Engineering",
+      "photo": "images/team/blue-updated/michael-tymm.webp",
+      "focal": "50% 50%",
+      "linkedin": "https://www.linkedin.com/in/michael-tymm/",
+      "bio": [
+        "Michael Tymm serves as Senior Technical Advisor, Systems and Software Engineering, bringing more than 30 years of experience in the design and development of complex medical devices and other safety-critical systems. He previously spent more than a decade at Hemedex, where he held systems and software engineering leadership responsibilities and contributed to the development of technologies for measuring tissue blood flow in reconstructive and transplant surgery and for monitoring cerebral blood flow in patients with acute brain injury.",
+        "Mike’s medical-device experience spans patient monitoring, laser vision correction, robot-assisted vascular procedures, and robot-assisted general surgery. Throughout his career, he has served as an engineer, manager, and director, with expertise in system architecture, software development, requirements management, verification and validation, and the development of safe, reliable, and effective products.",
+        "Mike holds a Bachelor of Science in Electrical Engineering from Rochester Institute of Technology and a Master of Science in Computer Systems Engineering from Northeastern University. He also completed MIT’s professional certificate program in Architecture and Systems Engineering and is an active member of the International Council on Systems Engineering. His longstanding knowledge of Hemedex technology and product history continues to support the company’s current and future product-development initiatives."
+      ]
     },
     {
       "slug": "stefanie-cantin",
@@ -112,7 +128,7 @@
       "slug": "mack-lund",
       "name": "Mack Lund",
       "credentials": null,
-      "title": "Board of Directors",
+      "title": "Board Member, Technology Committee Chair & Senior Advisor, Medical Device Technology and Product Strategy",
       "photo": "images/team/blue-updated/mack-lund.webp",
       "focal": "50% 50%",
       "linkedin": "https://www.linkedin.com/in/macklund",

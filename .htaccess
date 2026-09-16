@@ -45,6 +45,9 @@ Options -Indexes
   RedirectMatch 301 "^/about-us/?$"                                  "/about.html"
   RedirectMatch 301 "^/contact/?$"                                   "/contact.html"
 
+  # --- Retired team page previews (now the About page team section) ---
+  RedirectMatch 301 "^/team-preview(-blue|-blue-updated)?\.html$"      "/about.html#team"
+
   # --- Publications (five old URLs collapse into one page) ---
   RedirectMatch 301 "^/literature/?$"                                "/publications.html"
   RedirectMatch 301 "^/new-literature-page/?$"                       "/publications.html"
