@@ -29,7 +29,7 @@
     /* Text */
     --text-heading:  #0f172a;
     --text-body:     #334155;
-    --text-muted:    #64748b;
+    --text-muted:    #5b6779;
     --text-light:    #5f6f86;
 
     /* Feedback */
@@ -46,7 +46,7 @@
 
     /* Layout */
     --max-w:       1240px;
-    --max-w-prose: 780px;
+    --max-w-prose: 47ch;   /* ~70 characters per line in DM Sans at any size */
 
     /* Typography */
     --font-display: 'DM Serif Display', Georgia, serif;
@@ -262,7 +262,7 @@ input, select, textarea { font-family: inherit; }
 
 .nav-dropdown-link {
     display: block;
-    padding: 0.6rem 0.875rem;
+    padding: 0.7rem 0.875rem;
     border-radius: var(--r-md);
     font-size: 0.875rem;
     font-weight: 500;
@@ -276,6 +276,18 @@ input, select, textarea { font-family: inherit; }
     background: rgba(56,82,179,0.08);
     padding-left: 1.125rem;
     outline: none;
+}
+
+/* Site-wide keyboard focus ring. Components that draw their own focus
+   style (nav dropdown links, publication controls, bio buttons) override
+   this; everything else inherits a consistent, visible ring. */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+    border-radius: var(--r-sm);
 }
 
 /* ========================================
@@ -1357,6 +1369,7 @@ input, select, textarea { font-family: inherit; }
 }
 .faq-answer p,
 .faq-answer ul {
+    max-width: var(--max-w-prose);
     font-size: 0.9375rem;
     color: var(--text-body);
     line-height: 1.7;
@@ -1592,6 +1605,7 @@ input, select, textarea { font-family: inherit; }
     background: var(--white, #fff);
     border: 1px solid var(--border);
     border-radius: var(--r-sm);
+    min-height: 44px;
     padding: 0.45rem 2rem 0.45rem 0.75rem;
     cursor: pointer;
     appearance: none;
@@ -1618,6 +1632,7 @@ input, select, textarea { font-family: inherit; }
 .pub-selected-toggle {
     display: inline-flex;
     align-items: center;
+    min-height: 44px;
     gap: 0.4rem;
     font: inherit;
     font-size: 0.875rem;
@@ -1806,6 +1821,7 @@ input, select, textarea { font-family: inherit; }
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    min-height: 44px;
     padding: 0.4rem 0.625rem;
     border-radius: var(--r-md);
     cursor: pointer;
@@ -1972,6 +1988,7 @@ input, select, textarea { font-family: inherit; }
     font-size: 0.875rem;
     display: inline-flex;
     align-items: center;
+    min-height: 44px;
     gap: 0.375rem;
     transition: color var(--t-fast);
 }
@@ -2755,6 +2772,9 @@ body.bio-dialog-open { overflow: hidden; }
 .footer-links { display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem; }
 .footer-links a {
     color: rgba(255,255,255,0.75);
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
     padding: 0.4rem 0.875rem;
     border-radius: var(--r-md);
     font-size: 0.9375rem;
@@ -2869,7 +2889,7 @@ body.bio-dialog-open { overflow: hidden; }
         max-height: 0;
     }
     .has-dropdown.open > .nav-dropdown { max-height: 420px; }
-    .nav-dropdown-link { padding: 0.65rem 0.875rem; font-size: 0.9375rem; }
+    .nav-dropdown-link { min-height: 44px; display: flex; align-items: center; padding: 0.65rem 0.875rem; font-size: 0.9375rem; }
 
     .contact-layout { grid-template-columns: 1fr; }
     .form-row { grid-template-columns: 1fr; }
@@ -2965,7 +2985,9 @@ body.bio-dialog-open { overflow: hidden; }
     pointer-events: none;
 }
 .yt-fallback-link a {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
     background: rgba(0,0,0,0.72);
     color: white;
     font-size: 0.8125rem;
