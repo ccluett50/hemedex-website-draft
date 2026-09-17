@@ -107,6 +107,14 @@ Options -Indexes
   RedirectMatch 301 "^/themefusion_es_groups/.*$"                    "/index.html"
   RedirectMatch 301 "^/1699/?$"                                      "/index.html"
 
+  # --- PDFs linked from the old site (same files, new locations) ---
+  RedirectMatch 301 "^/wp-content/uploads/2018/12/BPM-Features-and-Benefits\.pdf$"  "/documents/bpm-features-benefits.pdf"
+  RedirectMatch 301 "^/wp-content/uploads/2017/06/H44000017-H(-1)?\.pdf$"          "/documents/BPM-spec-sheet.pdf"
+  RedirectMatch 301 "^/wp-content/uploads/2020/07/H44000021-D-QLB\.pdf$"            "/documents/quad-bolt-spec-sheet.pdf"
+  RedirectMatch 301 "^/wp-content/uploads/2020/07/H44000018-C-DLB\.pdf$"            "/documents/dual-bolt-spec-sheet.pdf"
+  RedirectMatch 301 "^/wp-content/uploads/2020/07/H44000018-C-SLB\.pdf$"            "/documents/single-bolt-spec-sheet.pdf"
+  RedirectMatch 301 "^/wp-content/uploads/2018/12/Vajkoczy-paper\.pdf$"             "/publications.html"
+
   # WordPress endpoints that no longer exist on a static site.
   RedirectMatch 410 "^/(wp-json|xmlrpc\.php|wp-login\.php)(/.*)?$"
 

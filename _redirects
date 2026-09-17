@@ -1,0 +1,83 @@
+# Netlify redirects: old WordPress URLs -> new static pages.
+# Same rules as .htaccess (used if the site stays on Bluehost). Keep the two in sync.
+# Netlify matches with or without a trailing slash, and www -> hemedex.com is automatic.
+
+# --- Keep build and server files off the public site ---
+/_team/*        /404.html  404!
+/.htaccess      /404.html  404!
+
+# --- Top-level pages ---
+/products        /products.html      301
+/clinical        /clinical.html      301
+/about-us        /about.html         301
+/contact         /contact.html       301
+
+# --- Retired team page previews ---
+/team-preview.html               /about.html#team  301
+/team-preview-blue.html          /about.html#team  301
+/team-preview-blue-updated.html  /about.html#team  301
+
+# --- Publications (five old URLs collapse into one page) ---
+/literature                /publications.html  301
+/new-literature-page       /publications.html  301
+/selected-literature       /publications.html  301
+/neuro-literature          /publications.html  301
+/neurosurgery-literature   /publications.html  301
+
+# --- Products ---
+/bowman-perfusion-monitor                         /products.html#bowman-monitor  301
+/products/bowman-perfusion-monitoring-system      /products.html#bowman-monitor  301
+/qflow-500-perfusion-probe                        /products.html#qflow-probe     301
+/products/qflow-500-perfusion-probe/dura-piercer  /products.html#qflow-probe     301
+/products/qflow-500-perfusion-probe               /products.html#qflow-probe     301
+/quad-lumen-bolt-kit                              /products.html#quad-bolt       301
+/products/quad-lumen-bolt-kit                     /products.html#quad-bolt       301
+/dual-lumen-bolt-kit                              /products.html#dual-bolt       301
+/products/dual-lumen-bolt-kit                     /products.html#dual-bolt       301
+/single-lumen-bolt-kit                            /products.html#single-bolt     301
+/products/single-lumen-bolt-kit                   /products.html#single-bolt     301
+/products/qflow-500-titanium-bolts                /products.html#quad-bolt       301
+
+# --- Clinical ---
+/why-perfusion            /clinical.html#why-perfusion  301
+/applications-benefits    /clinical.html#applications   301
+/validation               /clinical.html#validation     301
+/theory-of-operation      /clinical.html#theory         301
+/how-to-use-the-monitor   /clinical.html#how-to-use     301
+/multimodal-monitoring    /clinical.html#multimodal     301
+
+# --- Contact / sales / support ---
+/sales-team                          /contact.html  301
+/login                               /contact.html  301
+/independent-sales-representatives   /contact.html  301
+
+# --- About / events ---
+/multimodal-partners   /about.html          301
+/upcoming-events       /index.html#events   301
+
+# --- Pages with no static equivalent yet (nearest relevant page) ---
+/support                               /contact.html                       301
+/troubleshooting                       /contact.html                       301
+/qlb-tutorial-videos                   /products.html                      301
+/methodology                           /publications.html                  301
+/organ-transplantation-reconstructive  /publications.html#transplantation  301
+
+# --- Private customer portal (password-protected WordPress page, no static version) ---
+# Decide before launch. To send visitors to Contact instead of a 404, remove the # below.
+# /private-myhemedex-portal   /contact.html   302
+
+# --- PDFs linked from the old site (same files, new locations) ---
+/wp-content/uploads/2018/12/BPM-Features-and-Benefits.pdf  /documents/bpm-features-benefits.pdf    301
+/wp-content/uploads/2017/06/H44000017-H.pdf                /documents/BPM-spec-sheet.pdf           301
+/wp-content/uploads/2017/06/H44000017-H-1.pdf              /documents/BPM-spec-sheet.pdf           301
+/wp-content/uploads/2020/07/H44000021-D-QLB.pdf            /documents/quad-bolt-spec-sheet.pdf     301
+/wp-content/uploads/2020/07/H44000018-C-DLB.pdf            /documents/dual-bolt-spec-sheet.pdf     301
+/wp-content/uploads/2020/07/H44000018-C-SLB.pdf            /documents/single-bolt-spec-sheet.pdf   301
+/wp-content/uploads/2018/12/Vajkoczy-paper.pdf             /publications.html                      301
+
+# --- WordPress archives ---
+/category/*               /index.html  301
+/author/*                 /index.html  301
+/slide-page/*             /index.html  301
+/themefusion_es_groups/*  /index.html  301
+/1699                     /index.html  301
